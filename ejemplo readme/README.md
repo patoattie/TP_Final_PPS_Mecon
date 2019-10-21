@@ -1,6 +1,6 @@
 # 2019_TP_PPS_Comanda - ComiRadix
 
-Registrate en: https://forms.gle/yZ8xsdWj7W7ECWAG8
+
 
 
 Comenzamos decidiendo la estrategia git a utilizar para el trabajo en equipo, realizando algunas pruebas con distintos escenarios para determinar la manera de proceder en cada caso. Luego de las pruebas se determinó que utilizaremos la estrategia *mainline branching*.  
