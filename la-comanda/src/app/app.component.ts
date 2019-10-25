@@ -25,27 +25,12 @@ export class AppComponent {
     this.initializeApp();
   }
 
-  tl = new TimelineMax({ repeat: 0 });
-  t2 = new TimelineMax({ repeat: 0 });
 
 
   initializeApp() {
-    this.platform.ready().then(() => {
-      this.statusBar.styleDefault();
-      this.splashScreen.hide();
-      timer(8000).subscribe(() => this.showSplash = false);
+    this.platform.ready().then(() => {    
 
     });
-
-    setTimeout(() => {    //<<<---    using ()=> syntax
-     
-        this.tl.to('#mozo', 2, { delay: 1, attr: { viewBox: "0 0 500 130" } });
-        this.t2.to('#logo', 2, { delay: 1, attr: { viewBox: "0 0 780 69" } });
-        this.t2.to('#integrantes', 2, { delay: 1, attr: { viewBox: "0 0 780 126" } });
-      
-    }, 1000);
-
-
 
 
   }

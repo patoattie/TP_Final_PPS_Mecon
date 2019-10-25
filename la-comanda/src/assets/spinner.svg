@@ -1,8 +1,22 @@
-<body class="login-page">
-    <!-- Page Loader -->
-    <div class="page-loader-wrapper" *ngIf="spinner">
-        <div class="loader">
-            <svg viewBox="0 0 230 284" width="100" height="123">
+<svg xmlns="http://www.w3.org/2000/svg"  viewBox="0 0 230 284" width="100" height="123">
+
+<style>
+
+tspan { white-space:pre }
+.shp0 { fill: #0000ff } 
+.shp1 { fill: #cffffa } 
+.shp2 { fill: #96cfc9 } 
+.shp3 { fill: #a4e6fe } 
+.shp4 { fill: #333333 } 
+.shp5 { fill: #595857 } 
+.shp6 { fill: #f37324 } 
+.shp7 { fill: #ffd0a3 } 
+.shp8 { fill: #ffe8d1 } 
+.shp9 { fill: #828282 } 
+.shp10 { fill: #a1a1a1 } 
+
+</style>
+
 
                 <circle y="100" cx="30" cy="150" r="25" style="stroke: none; fill: #0000ff;">
                     <animate attributeName="cx" attributeType="XML" from="30" to="200" begin="0s" dur="1s" fill="remove"
@@ -43,88 +57,3 @@
                 <path id="Layer" class="shp10"
                     d="M98.94 83.72L93.88 83.72C88.27 83.72 83.72 88.27 83.72 93.88L83.72 108.81C84.43 114.1 87.26 118.72 91.33 121.78L91.33 144.62L114.17 144.62L114.17 124.32C105.07 116.22 98.94 101.08 98.94 83.72L98.94 83.72Z" />
             </svg>
-
-
-        </div>
-    </div>
-    <!-- #END# Page Loader -->
-    <div class="login-box">
-        <div class="logo">
-            <a href="javascript:void(0);" style="padding-bottom: 10px;"><img src="../../assets/logo_tipo.svg"></a>
-            <small>Administración de comandas - PPS2019</small>
-        </div>
-        <div class="card">
-            <div class="body">
-                <form id="sign_in" method="POST">
-                    <div class="msg">Ingrese los datos para iniciar la aplicación</div>
-                    <div class="input-group">
-                        <span class="input-group-addon">
-                            <i class="material-icons">person</i>
-                        </span>
-                        <div class="form-line">
-                            <input type="text" class="form-control" name="username" placeholder="Nombre usuario" required
-                                autofocus>
-                        </div>
-                    </div>
-                    <div class="input-group">
-                        <span class="input-group-addon">
-                            <i class="material-icons">lock</i>
-                        </span>
-                        <div class="form-line">
-                            <input type="password" class="form-control" name="password" placeholder="Clave" required>
-                        </div>
-                    </div>
-                    <div class="row">
-                       
-                        <div class="col-xs-4">
-                            <button class="btn btn-block bg-pink waves-effect" type="submit">Ingresar</button>
-                        </div>
-                    </div>
-                    <div class="row m-t-15 m-b--20">
-                          <div class="col-xs-6 align-right">
-                            <a href="#">¿Olvidó loa clave?</a>
-                        </div>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </div>
-
-    <div example-container>
-
-        <ion-fab horizontal="center" vertical="bottom" slot="fixed" >
-                <ion-button color="#0d6f92" style="width: 200px">
-                        USUARIOS TESTING
-
-                </ion-button>
-            
-          
-            <ion-fab-list  side="top" >
-                    <ion-button color="#0d6f92" style="width: 200px"
-                    [routerLink]="['/alta']" 
-                   >
-                    Alta (borrarlo luego)
-                </ion-button>
-
-                <ion-button color="#0d6f92" style="width: 200px"
-                    (click)="usuario.nombre='supervisor@nose.com';usuario.clave='123456'">
-                    Supervisor
-                </ion-button>
-                <ion-button color="#0d6f92" style="width: 200px"
-                    (click)="usuario.nombre='empleado@nose.com';usuario.clave='123456'">
-                    Empleado
-                </ion-button>
-                <ion-button color="#0d6f92" style="width: 200px"
-                    (click)="usuario.nombre='cliente@nose.com';usuario.clave='123456'">
-                    Cliente
-                </ion-button>
-                <ion-button color="#0d6f92" style="width: 200px"
-                    (click)="usuario.nombre='dueno@nose.com';usuario.clave='123456'">
-                    Dueño
-                </ion-button>
-
-            </ion-fab-list>
-        </ion-fab>
-
-
-    </div>

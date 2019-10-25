@@ -6,7 +6,20 @@ import { Component } from '@angular/core';
   styleUrls: ['home.page.scss'],
 })
 export class HomePage {
+  spinner=true;
+  usuario: any;
+  constructor() {
+    this.loading();
+  }
 
-  constructor() {}
+
+  loading(){
+
+    setTimeout(() => {    //<<<---    using ()=> syntax
+      this.spinner=false;
+    
+  }, 5000);
+
+  }
 
 }
