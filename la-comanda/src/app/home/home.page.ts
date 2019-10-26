@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { ScreenOrientation } from '@ionic-native/screen-orientation/ngx';
 
 @Component({
   selector: 'app-home',
@@ -7,9 +8,18 @@ import { Component } from '@angular/core';
 })
 export class HomePage {
   spinner=true;
-  usuario: any;
-  constructor() {
+  usuario: {nombre:string, clave:string};
+  constructor(private screenOrientation: ScreenOrientation) {
+    try {
+      this.screenOrientation.lock(this.screenOrientation.ORIENTATIONS.PORTRAIT).then(() => {
+        console.log('lock');
+      });
+    } catch (e) {
+      console.warn('No cordova.js');
+    }
+
     this.loading();
+    this.usuario = {nombre:"nombre", clave:"123456"};
   }
 
 
@@ -23,3 +33,5 @@ export class HomePage {
   }
 
 }
+
+

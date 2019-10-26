@@ -7798,8 +7798,8 @@ margin: 5% auto;*/
 .signup-page {
   background-color: #00BCD4;
   padding-left: 0;
-  max-width: 360px;
-  margin: 5% auto;
+  /* max-width: 360px;
+  margin: 5% auto; */
   overflow-x: hidden; }
   .signup-page .signup-box .msg {
     color: #555;
@@ -7828,8 +7828,8 @@ margin: 5% auto;*/
 .fp-page {
   background-color: #00BCD4;
   padding-left: 0;
-  max-width: 360px;
-  margin: 5% auto;
+  /* max-width: 360px;
+  margin: 5% auto; */
   overflow-x: hidden; }
   .fp-page .fp-box .msg {
     color: #555;
