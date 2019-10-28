@@ -1,0 +1,86 @@
+<body class="signup-page">
+    <div class="signup-box">
+        <div class="logo">
+            <a href="javascript:void(0);" style="padding-bottom: 10px;"><img src="../../assets/logo_tipo.svg"></a>
+            <small>Administración de comandas - PPS2019</small>
+        </div>
+        <div class="card">
+            <div class="body">
+                
+
+              
+               
+                <form id="sign_up" method="POST">
+
+                    <div class="msg">Registro de nuevo miembros</div>
+                    <div class="form-group mb-3">
+                        <span class="input-group-addon">
+                            <i class="material-icons" style="font-size:25px; vertical-align: middle;">crop_square</i>Scanear Datos DNI
+                        </span>
+                    </div>
+                    <div class="input-group">
+                        <span class="input-group-addon">
+                            <i class="material-icons">person</i>
+                        </span>
+                        <div class="form-line">
+                            <input type="text" class="form-control" [(ngModel)]="nuevoUsuario.nombre" name="Nombre de Usuario"
+                                placeholder="Nombre de Usuario" required autofocus>
+                        </div>
+                    </div>
+                    <div class="input-group">
+                        <span class="input-group-addon">
+                            <i class="material-icons">email</i></span>
+                        <div class="form-line">
+                            <input type="email" class="form-control" [(ngModel)]="nuevoUsuario.email" name="email"
+                                placeholder="Dirección correo electrónico" required>
+                        </div>
+                    </div>
+                    <div class="input-group">
+                        <span class="input-group-addon">
+                            <i class="material-icons">lock</i>
+                        </span>
+                        <div class="form-line">
+                            <input type="password" class="form-control" [(ngModel)]="nuevoUsuario.clave" name="password"
+                                minlength="6" placeholder="Clave" required>
+                        </div>
+                    </div>
+                    <div class="input-group">
+                        <span class="input-group-addon">
+                            <i class="material-icons">lock</i>
+                        </span>
+                        <div class="form-line">
+                            <input type="password" class="form-control" name="confirm" [(ngModel)]="nuevoUsuario.clave"
+                                minlength="6" placeholder="Confirmar clave" required>
+                        </div>
+                    </div>
+                    <div class="form-group mb-3">
+                        <span class="input-group-addon">
+                            <i class="material-icons" style="font-size:25px; vertical-align: middle;">photo_camera</i>Sacar una Foto
+                        </span>
+                    </div>
+                    <div class="custom-dropzone" ngx-dropzone [accept]="'image/*'" (change)="onSelect($event)">
+                      <ngx-dropzone-label>
+                          
+                              <i class="material-icons" style="font-size:25px; vertical-align: middle;">insert_photo</i>Insertar Foto 
+                          
+                      </ngx-dropzone-label>
+                      <ngx-dropzone-image-preview ngProjectAs="ngx-dropzone-preview" *ngFor="let f of files" [file]="f"
+                          [removable]="true" (removed)="onRemove(f)">
+                          <ngx-dropzone-label>{{ f.name }} ({{ f.type }})</ngx-dropzone-label>
+                      </ngx-dropzone-image-preview>
+                  </div>
+
+                    <div class="form-group">
+                        <input type="checkbox" name="terms" id="terms" class="filled-in chk-col-pink">
+                        <label for="terms">Estoy de acuerdo con <a href="javascript:void(0);">los términos y
+                                referencias</a>.</label>
+                    </div>
+
+                    <button class="btn btn-block btn-lg bg-pink waves-effect" type="submit"
+                        (click)="registrarUsuario(nuevoUsuario)">Registrase</button>
+
+                  
+                </form>
+            </div>
+        </div>
+    </div>
