@@ -16,13 +16,19 @@ import { environment } from "../environments/environment";
 import { ScreenOrientation } from '@ionic-native/screen-orientation/ngx';
 import { ReactiveFormsModule } from '@angular/forms'; // <-- NgModel lives here
 import { AuthService } from './servicios/auth.service';
+//import { LoginComponent } from './componentes/login/login.component';
+import { HomePageModule } from './home/home.module';
+import { SplashPageModule } from './splash/splash.module';
 
 
 
 
 
 @NgModule({
-  declarations: [AppComponent],
+  declarations: [
+    //LoginComponent,
+    AppComponent
+  ],
   entryComponents: [],
   imports: [
     BrowserModule, 
@@ -31,6 +37,8 @@ import { AuthService } from './servicios/auth.service';
     AngularFireAuthModule,
     AngularFirestoreModule,
     ReactiveFormsModule,
+    HomePageModule,
+    SplashPageModule,
     AppRoutingModule
   ],
   providers: [

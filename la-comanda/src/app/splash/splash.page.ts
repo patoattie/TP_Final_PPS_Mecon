@@ -29,13 +29,13 @@ export class SplashPage implements OnInit {
 
   ngOnInit() {
 
-    try {
+    /*try {
       this.screenOrientation.lock(this.screenOrientation.ORIENTATIONS.PORTRAIT).then(() => {
         console.log('lock');
       });
     } catch (e) {
-      console.warn('No cordova.js');
-    }
+      console.log('No cordova.js');
+    }*/
 
 
     this.platform.ready().then(() => {
