@@ -55,14 +55,18 @@
         </div>
         <div class="card">
             <div class="body">
-                <form id="sign_in" method="POST">
+                <!-- <form id="sign_in" method="POST"> -->
+                <form [formGroup]="formulario">
                     <div class="msg">Ingrese los datos para iniciar la aplicación</div>
+                    <ion-item color="danger" *ngIf="getError()">
+                        <ion-label>E-Mail inexistente o Clave incorrecta</ion-label>
+                    </ion-item>
                     <div class="input-group">
                         <span class="input-group-addon">
                             <i class="material-icons">person</i>
                         </span>
                         <div class="form-line">
-                            <input type="text" class="form-control" name="username" placeholder="Nombre usuario" required
+                            <input formControlName="correo" type="email" class="form-control" name="username" placeholder="Nombre usuario" required
                                 autofocus>
                         </div>
                     </div>
@@ -71,18 +75,23 @@
                             <i class="material-icons">lock</i>
                         </span>
                         <div class="form-line">
-                            <input type="password" class="form-control" name="password" placeholder="Clave" required>
+                            <input formControlName="clave" type="password" class="form-control" name="password" placeholder="Clave" required>
                         </div>
                     </div>
                     <div class="row">
                        
                         <div class="col-xs-4">
-                            <button class="btn btn-block bg-pink waves-effect" type="submit">Ingresar</button>
+                            <!-- <button class="btn btn-block bg-pink waves-effect" type="submit">Ingresar</button> -->
+                            <ion-button expand="block" fill="solid" color="danger" type="button" (click)="login()">
+                                <ion-spinner name="lines-small" slot="end" *ngIf="getEnEspera()"></ion-spinner>
+                                Ingresar
+                            </ion-button>
                         </div>
                     </div>
+                    <p *ngIf="getErrorDatos()" style="color: #ea6153;">Por favor verificá que hayas ingresado un E-Mail válido y una Clave.</p>
                     <div class="row m-t-15 m-b--20">
                           <div class="col-xs-6 align-right">
-                            <a href="#">¿Olvidó loa clave?</a>
+                            <a href="#">¿Olvidó la clave?</a>
                         </div>
                     </div>
                 </form>

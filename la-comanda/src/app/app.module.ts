@@ -11,10 +11,11 @@ import { AppRoutingModule } from './app-routing.module';
 
 import { AngularFireModule } from "@angular/fire";
 import { AngularFireAuthModule } from "@angular/fire/auth";
-import { AngularFirestoreModule } from "@angular/fire/firestore";
+import { AngularFirestoreModule, FirestoreSettingsToken } from "@angular/fire/firestore";
 import { environment } from "../environments/environment";
 import { ScreenOrientation } from '@ionic-native/screen-orientation/ngx';
-
+import { ReactiveFormsModule } from '@angular/forms'; // <-- NgModel lives here
+import { AuthService } from './servicios/auth.service';
 
 
 
@@ -29,14 +30,16 @@ import { ScreenOrientation } from '@ionic-native/screen-orientation/ngx';
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireAuthModule,
     AngularFirestoreModule,
+    ReactiveFormsModule,
     AppRoutingModule
   ],
   providers: [
     ScreenOrientation,   
     StatusBar,
     SplashScreen,  
+    AuthService,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },  
-
+    { provide: FirestoreSettingsToken, useValue: {} }
   ],
   bootstrap: [AppComponent]
 })

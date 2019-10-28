@@ -20,7 +20,7 @@ export class AuthGuard implements CanActivate
     if(!this.authService.isLoggedIn()) 
     {
       console.log("Acceso no permitido");
-      this.router.navigate(['alta']);
+      this.router.navigate(['home']);
     }
   
     return true;
