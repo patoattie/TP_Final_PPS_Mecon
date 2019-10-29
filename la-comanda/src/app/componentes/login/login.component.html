@@ -3,6 +3,9 @@
       <a href="javascript:void(0);" style="padding-bottom: 10px;"><img src="../../../assets/logo_tipo.svg"></a>
       <small>Administración de comandas - PPS2019</small>
   </div>
+
+  <!-- <app-cabecera></app-cabecera> -->
+
   <div class="card">
       <div class="body">
           <!-- <form id="sign_in" method="POST"> -->
@@ -65,7 +68,7 @@
               Alta (borrarlo luego)
           </ion-button>
 
-          <ion-button color="#0d6f92" style="width: 200px"
+          <!-- <ion-button color="#0d6f92" style="width: 200px"
               (click)="usuario.nombre='supervisor@nose.com';usuario.clave='123456'">
               Supervisor
           </ion-button>
@@ -80,8 +83,24 @@
           <ion-button color="#0d6f92" style="width: 200px"
               (click)="usuario.nombre='dueno@nose.com';usuario.clave='123456'">
               Dueño
-          </ion-button>
+          </ion-button> -->
 
+          <ion-button color="#0d6f92" style="width: 200px"
+              (click)="completarUsuario('supervisor')">
+              Supervisor
+          </ion-button>
+          <ion-button color="#0d6f92" style="width: 200px"
+              (click)="completarUsuario('empleado')">
+              Empleado
+          </ion-button>
+          <ion-button color="#0d6f92" style="width: 200px"
+              (click)="completarUsuario('cliente')">
+              Cliente
+          </ion-button>
+          <ion-button color="#0d6f92" style="width: 200px"
+              (click)="completarUsuario('dueño')">
+              Dueño
+          </ion-button>
       </ion-fab-list>
   </ion-fab>
 

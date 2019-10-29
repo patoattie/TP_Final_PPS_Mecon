@@ -7,6 +7,7 @@ import { RouterModule } from '@angular/router';
 
 import { HomePage } from './home.page';
 import { LoginComponent } from '../componentes/login/login.component';
+//import { CabeceraComponent } from "../componentes/cabecera/cabecera.component";
 
 @NgModule({
   imports: [
@@ -23,6 +24,7 @@ import { LoginComponent } from '../componentes/login/login.component';
   ],
   declarations: [
     LoginComponent,
+    //CabeceraComponent,
     HomePage
   ]
 })

@@ -19,6 +19,8 @@ import { AuthService } from './servicios/auth.service';
 //import { LoginComponent } from './componentes/login/login.component';
 import { HomePageModule } from './home/home.module';
 import { SplashPageModule } from './splash/splash.module';
+import { CabeceraComponent } from "./componentes/cabecera/cabecera.component";
+import { AltaPageModule } from './alta/alta.module';
 
 
 
@@ -27,6 +29,7 @@ import { SplashPageModule } from './splash/splash.module';
 @NgModule({
   declarations: [
     //LoginComponent,
+    CabeceraComponent,
     AppComponent
   ],
   entryComponents: [],
@@ -38,6 +41,7 @@ import { SplashPageModule } from './splash/splash.module';
     AngularFirestoreModule,
     ReactiveFormsModule,
     HomePageModule,
+    AltaPageModule,
     SplashPageModule,
     AppRoutingModule
   ],

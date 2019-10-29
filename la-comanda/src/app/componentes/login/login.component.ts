@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from '../../servicios/auth.service';
+import { CabeceraComponent } from "../cabecera/cabecera.component";
 
 @Component({
   selector: 'app-login',
@@ -84,20 +85,17 @@ export class LoginComponent implements OnInit
   {
     switch(perfil)
     {
-      case 'admin':
-        this.formulario.setValue({correo: 'admin@admin.com', clave: '111111'});
+      case 'supervisor':
+        this.formulario.setValue({correo: 'supervisor@nose.com', clave: '123456'});
         break;
-      case 'invitado':
-        this.formulario.setValue({correo: 'invitado@invitado.com', clave: '222222'});
+      case 'empleado':
+        this.formulario.setValue({correo: 'empleado@nose.com', clave: '123456'});
         break;
-      case 'usuario':
-        this.formulario.setValue({correo: 'usuario@usuario.com', clave: '333333'});
+      case 'cliente':
+        this.formulario.setValue({correo: 'cliente@nose.com', clave: '123456'});
         break;
-      case 'anonimo':
-        this.formulario.setValue({correo: 'anonimo@anonimo.com', clave: '444444'});
-        break;
-      case 'tester':
-        this.formulario.setValue({correo: 'tester@tester.com', clave: '555555'});
+      case 'dueño':
+        this.formulario.setValue({correo: 'dueno@nose.com', clave: '123456'});
         break;
       default:
         this.formulario.setValue({correo: '', clave: ''});
