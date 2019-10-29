@@ -1,0 +1,61 @@
+<body class="signup-page">
+  <div class="signup-box">
+      <div class="logo">
+          <a href="javascript:void(0);" style="padding-bottom: 10px;"><img src="../../assets/logo_tipo.svg"></a>
+          <small>Administración de comandas - PPS2019</small>
+      </div>
+      <div class="card">
+          <div class="body">           
+
+              <form id="sign_up" method="POST">
+
+                  <div class="msg">Alta de Mesa</div>
+                  <button (click)="scanQr()" class="form-group mb-3">
+                      <span class="input-group-addon">
+                          <i class="material-icons" style="font-size:25px; vertical-align: middle;">crop_square</i>Scanear Mesa
+                      </span>
+                  </button>
+                  <div class="input-group">
+                      <span class="input-group-addon">
+                          <i class="material-icons">crop_square</i>
+                      </span>
+                      <div class="form-line">
+                          <input type="text" class="form-control" [(ngModel)]="mesa.numero" name="Número de mesa"
+                              placeholder="Número de mesa" required autofocus>
+                      </div>
+
+              
+                  </div>
+                  <div class="input-group">
+                      <span class="input-group-addon">
+                          <i class="material-icons">person</i></span>
+                      <div class="form-line">
+                          <input type="text" class="form-control" [(ngModel)]="mesa.comensales" name="comensales"
+                              placeholder="Número Comensales" required>
+                      </div>
+                  </div>
+
+                  <div class="input-group">
+                    <span class="input-group-addon">
+                        <i class="material-icons">accessible_forward</i></span>
+                    <div class="form-line">
+                        <input type="text" class="form-control" [(ngModel)]="mesa.tipo_comensales" name="tipo_comensales"
+                            placeholder="Tipo servicio Comensales" required>
+                    </div>
+                </div>
+                  
+                <button   (click)="tomarFoto()" class="form-group mb-3">
+                      <span class="input-group-addon">
+                          <i class="material-icons" style="font-size:25px; vertical-align: middle;">photo_camera</i>Sacar una Foto
+                      </span>
+                </button>
+                 
+
+                  <button class="btn btn-block btn-lg bg-pink waves-effect" type="submit"
+                      (click)="altaMesa()">Alta</button>
+
+                
+              </form>
+          </div>
+      </div>
+  </div>
