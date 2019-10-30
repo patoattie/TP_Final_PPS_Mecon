@@ -15,23 +15,69 @@ export class MesaComponent implements OnInit {
   public Archivofoto: any;
   ok: boolean = true;
   parse: any;
+  mesas: Mesa[];
+  mensaje: string = " ";
 
   constructor(public mesaServicio: MesaService, private camera: Camera, private file: File, private barcodeScanner: BarcodeScanner) { }
 
-  ngOnInit() { }
+  ngOnInit() {
+
+   this.mesaServicio.traerTodasMesas()
+      .subscribe(mesas => {
+        this.mesas = mesas;
+       // console.log(this.mesas[0].numero);
+      });
+
+
+   /*  this.mesaServicio.traerUnaMesa('mesa_3').subscribe(mesa => {
+       console.log(mesa.numero);
+    });
+    */
+
+    this.traerMesa();
+  
+
+      
+  }
+
+
+
 
   altaMesa() {
-    //if si no esta primero traertodos 
-    if (this.Archivofoto.fileName != undefined) {
-      console.info(this.Archivofoto);
-      this.mesaServicio.altaMesa(this.Archivofoto.fileName, this.Archivofoto.imgBlob, this.mesa);
+
+    let mesas: Mesa[];
+
+    if (this.mesas.some(mesa => mesa.numero == this.mesa.numero)) {
+      this.mensaje = "la mesa ya existe";
+      console.log('la mesa ya existe');
+    } else {
+      //if si no esta primero traertodos 
+      if (this.Archivofoto.fileName != undefined) {
+        console.info(this.Archivofoto);
+        this.mesaServicio.altaMesa(this.Archivofoto.fileName, this.Archivofoto.imgBlob, this.mesa);
+        this.mensaje = ("mesa cargada");
+      }
+      else {
+        this.mensaje = ("imagen no cargada");
+      }
     }
-    else {
-      alert("imagen no cargada");
-    }
+
 
   }
 
+
+
+  traerMesas() {
+
+    let mesas: any[];
+
+    setTimeout(() => {    //<<<---    using ()=> syntax
+      this.mesaServicio.traerUnaMesa('mesa_2');
+
+
+    }, 5000);
+
+  }
 
   cameraCallback(imageData) {
     let image: any = document.getElementById('myImage');
@@ -87,7 +133,7 @@ export class MesaComponent implements OnInit {
       this.mesa.numero = this.parse.numero;
       this.mesa.comensales = this.parse.comensales;
       this.mesa.tipo_comensales = this.parse.tipo_comensales;
-  
+
 
     }).catch(err => {
       console.log('Error caraga credito', err);
@@ -95,6 +141,46 @@ export class MesaComponent implements OnInit {
   }
 
 
+  bajarMesas() {
+    let mesas: Mesa[];
+    return new Promise((resolve, reject) => {
+      resolve(this.mesaServicio.traerTodasMesas()
+        .subscribe(user => {
+
+          user.forEach(userData => {
+            let mesa = userData.payload.doc.data() as Mesa;
+            let id = userData.payload.doc.id;
+            mesas.push(mesa);
+          });
+        }));
+
+    });
+
+  }
+
+
+  bajaMesa() {
+    console.log('mod');
+    this.mesa.baja = true;
+    this.mesaServicio.bajaMesa(this.mesa);
+  }
+
+  
+  modificarMesa() {
+    this.mesaServicio.modificarMesa(this.mesa);
+  }
+
+
+  traerMesa(){
+    this.mesa.numero=3;
+    let uid:string= 'mesa'+this.mesa.numero;
+    this.mesaServicio.traerUnaMesa(uid).subscribe(mesa => {
+      console.log(mesa.numero);
+   });
+ 
+  }
+
+  
 
 
 }

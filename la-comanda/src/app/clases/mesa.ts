@@ -3,5 +3,9 @@ export class Mesa {
     comensales: number;
     tipo_comensales: string;
     foto: string;
+    baja:boolean;
+    motivo:string;
+    id:any;
+    spin:boolean;
     
 }
