@@ -12,6 +12,7 @@ export class MesaService {
   porcentaje: number;
   finalizado: boolean;
   mesas: Mesa[];
+  spinner:boolean;
 
 
 
@@ -20,7 +21,7 @@ export class MesaService {
 
 
   altaMesa(filename: string, file: any, mesa: Mesa) {
-
+    this.spinner = true;
     //subi la foto
     var ref = this.storagefoto.ref('mesa/' + mesa.numero + '/' + filename).put(file);
 
@@ -70,7 +71,8 @@ export class MesaService {
 
           res.then(meta => {
             this.storagefoto.ref('mesa/' + mesa.numero + '/' + filename).updateMetadata(meta);
-            console.log('meta ok')
+            console.log('meta ok');
+            this.spinner = false;
           })
             .catch(function (error) {
               // Uh-oh, an error occurred!
@@ -86,7 +88,8 @@ export class MesaService {
 
 
 
-  traerUnaMesa(uid): any {
+  traerUnaMesa(uid:string): any {
+    console.log(uid);
     return this.fireStore.collection('mesas').doc(uid).valueChanges();
     }
 

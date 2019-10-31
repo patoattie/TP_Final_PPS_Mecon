@@ -17,30 +17,39 @@ export class MesaComponent implements OnInit {
   parse: any;
   mesas: Mesa[];
   mensaje: string = " ";
+  image: any;
+  mifoto: any;
+  boton: HTMLElement;
+  menu_b:boolean = true;
+  alta:boolean = true;
+
 
   constructor(public mesaServicio: MesaService, private camera: Camera, private file: File, private barcodeScanner: BarcodeScanner) { }
 
   ngOnInit() {
 
-   this.mesaServicio.traerTodasMesas()
+    this.mesaServicio.traerTodasMesas()
       .subscribe(mesas => {
         this.mesas = mesas;
-       // console.log(this.mesas[0].numero);
+        // console.log(this.mesas[0].numero);
       });
 
 
-   /*  this.mesaServicio.traerUnaMesa('mesa_3').subscribe(mesa => {
-       console.log(mesa.numero);
-    });
-    */
+    /*  this.mesaServicio.traerUnaMesa('mesa_3').subscribe(mesa => {
+        console.log(mesa.numero);
+     });
+     */
 
-    this.traerMesa();
-  
+    this.traerMesa(3);
 
-      
+    
+
+
+
   }
 
 
+  
 
 
   altaMesa() {
@@ -72,7 +81,7 @@ export class MesaComponent implements OnInit {
     let mesas: any[];
 
     setTimeout(() => {    //<<<---    using ()=> syntax
-      this.mesaServicio.traerUnaMesa('mesa_2');
+      this.mesaServicio.traerUnaMesa('mesa_3');
 
 
     }, 5000);
@@ -80,14 +89,16 @@ export class MesaComponent implements OnInit {
   }
 
   cameraCallback(imageData) {
-    let image: any = document.getElementById('myImage');
-    image.src = "data:image/jpeg;base64," + imageData;
+    this.image = document.getElementById('myImage');
+    this.image.src = "data:image/jpeg;base64," + imageData;
+
+    console.log(imageData);
   }
 
 
   async tomarFoto() {
     const options: CameraOptions = {
-      quality: 100,
+      quality: 50,
       destinationType: this.camera.DestinationType.FILE_URI,
       encodingType: this.camera.EncodingType.JPEG,
       mediaType: this.camera.MediaType.PICTURE,
@@ -98,12 +109,19 @@ export class MesaComponent implements OnInit {
     try {
       let fotoInfo = await this.camera.getPicture(options);
       this.Archivofoto = await this.formatoBlob(fotoInfo);
-      alert(this.Archivofoto.fileName);
+
+      let filename = fotoInfo.substring(fotoInfo.lastIndexOf('/') + 1);
+      let path = fotoInfo.substring(0, fotoInfo.lastIndexOf('/') + 1);
+      //then use the method reasDataURL  btw. var_picture is ur image variable
+      this.file.readAsDataURL(path, filename).then(res => this.mifoto = res);
+
     } catch (error) {
       alert("error.message");
       this.ok = false;
     }
   }
+
+
 
 
   formatoBlob(fotoInfo) {
@@ -165,22 +183,33 @@ export class MesaComponent implements OnInit {
     this.mesaServicio.bajaMesa(this.mesa);
   }
 
-  
+
+estAnim(elementId, animClasses) {
+  document.getElementById(elementId).classList.add(animClasses);
+    var wait = window.setTimeout( function(){
+      document.getElementById(elementId).classList.remove(animClasses)},
+        1300
+    );
+}
+
   modificarMesa() {
+    this.estAnim('modificar', 'animation-target');  
     this.mesaServicio.modificarMesa(this.mesa);
   }
 
 
-  traerMesa(){
-    this.mesa.numero=3;
-    let uid:string= 'mesa'+this.mesa.numero;
+  traerMesa(numero:number) {
+    let uid: string = 'mesa_' + numero.toString();
     this.mesaServicio.traerUnaMesa(uid).subscribe(mesa => {
       console.log(mesa.numero);
-   });
- 
+    });
+
   }
 
-  
+  menu(modificacion: any){
+
+
+  }
 
 
 }

@@ -27,6 +27,7 @@ import { File } from '@ionic-native/file/ngx';
 import { FormsModule } from '@angular/forms';
 import { AngularFireStorage } from '@angular/fire/storage';
 import { BarcodeScanner } from "@ionic-native/barcode-scanner/ngx";
+import { PrincipalPipe } from './principal.pipe';
 
 
 
@@ -39,7 +40,8 @@ import { BarcodeScanner } from "@ionic-native/barcode-scanner/ngx";
     //LoginComponent,
     CabeceraComponent,
     AppComponent,
-    MesaComponent
+    MesaComponent,
+    PrincipalPipe
   ],
   entryComponents: [],
   imports: [

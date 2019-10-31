@@ -8,6 +8,7 @@ const routes: Routes = [
   { path: 'home', loadChildren: () => import('./home/home.module').then( m => m.HomePageModule)},
   { path: 'splash', loadChildren: './splash/splash.module#SplashPageModule' },
   { path: 'alta', loadChildren: './alta/alta.module#AltaPageModule' },
+  { path: 'principal', loadChildren: './principal/principal.module#PrincipalPageModule' },
 
 ];
 
