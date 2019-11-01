@@ -7,7 +7,7 @@
     <div class="card">
       <div class="body">
 
-        <div *ngIf="supervisor | dueno">
+        <div *ngIf="(perfil == 'supervisor' || perfil == 'dueno')">
           <!-- perfil supervisor
         botones:         
           alta empleado
@@ -26,7 +26,7 @@
         </div>
 
 
-        <div *ngIf="cliente">
+        <div *ngIf="perfil == 'cliente'">
 
 
           <!-- perfil cliente registrado
@@ -48,7 +48,7 @@
 
 
 
-        <div *ngIf="mozo">
+        <div *ngIf="perfil == 'mozo'">
 
 
           <!-- perfil mozo-
@@ -67,7 +67,7 @@
 
 
 
-        <div *ngIf="metre">
+        <div *ngIf="perfil == 'metre'">
 
 
 
@@ -89,7 +89,7 @@
 
 
 
-        <div *ngIf="cocinero | bartender">
+        <div *ngIf="(perfil == 'cocinero' || perfil == 'bartender')">
 
           <!-- perfil cocinero bartender
           alta producto

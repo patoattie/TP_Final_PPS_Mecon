@@ -21,7 +21,7 @@ import { HomePageModule } from './home/home.module';
 import { SplashPageModule } from './splash/splash.module';
 import { CabeceraComponent } from './componentes/cabecera/cabecera.component';
 import { AltaPageModule } from './alta/alta.module';
-import { MesaComponent } from './componentes/mesa/mesa.component';
+import { MesaComponent } from './componentes/abmMesa/mesa.component';
 import { Camera, CameraOptions } from '@ionic-native/camera/ngx';
 import { File } from '@ionic-native/file/ngx';
 import { FormsModule } from '@angular/forms';

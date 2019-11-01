@@ -11,6 +11,8 @@ import { BarcodeScanner } from "@ionic-native/barcode-scanner/ngx";
   styleUrls: ['./mesa.component.scss'],
 })
 export class MesaComponent implements OnInit {
+  modificacion: boolean;
+
   mesa: Mesa = new Mesa();
   public Archivofoto: any;
   ok: boolean = true;
@@ -20,8 +22,10 @@ export class MesaComponent implements OnInit {
   image: any;
   mifoto: any;
   boton: HTMLElement;
-  menu_b:boolean = true;
-  alta:boolean = true;
+  menu_b: boolean = true;
+  alta: boolean = true;
+  baja: boolean;
+ 
 
 
   constructor(public mesaServicio: MesaService, private camera: Camera, private file: File, private barcodeScanner: BarcodeScanner) { }
@@ -42,14 +46,14 @@ export class MesaComponent implements OnInit {
 
     this.traerMesa(3);
 
-    
+
 
 
 
   }
 
 
-  
+
 
 
   altaMesa() {
@@ -184,21 +188,22 @@ export class MesaComponent implements OnInit {
   }
 
 
-estAnim(elementId, animClasses) {
-  document.getElementById(elementId).classList.add(animClasses);
-    var wait = window.setTimeout( function(){
-      document.getElementById(elementId).classList.remove(animClasses)},
-        1300
+  estAnim(elementId, animClasses) {
+    document.getElementById(elementId).classList.add(animClasses);
+    var wait = window.setTimeout(function () {
+      document.getElementById(elementId).classList.remove(animClasses)
+    },
+      1300
     );
-}
+  }
 
   modificarMesa() {
-    this.estAnim('modificar', 'animation-target');  
+    this.estAnim('modificar', 'animation-target');
     this.mesaServicio.modificarMesa(this.mesa);
   }
 
 
-  traerMesa(numero:number) {
+  traerMesa(numero: number) {
     let uid: string = 'mesa_' + numero.toString();
     this.mesaServicio.traerUnaMesa(uid).subscribe(mesa => {
       console.log(mesa.numero);
@@ -206,8 +211,25 @@ estAnim(elementId, animClasses) {
 
   }
 
-  menu(modificacion: any){
+  menu(accion: string) {
 
+    switch (accion) {
+      case 'alta':
+        this.alta = true;
+        this.baja = false;
+        this.modificacion = false;
+        break;
+      case 'baja':
+        this.baja = true;
+        this.alta = false;
+        this.modificacion = false;
+        break;
+      case 'modificacion':
+        this.modificacion = true;
+        this.baja = false;
+        this.alta = false;
+        break;
+    }
 
   }
 
