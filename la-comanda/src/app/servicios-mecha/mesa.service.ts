@@ -108,6 +108,7 @@ export class MesaService {
 
 
   modificarMesa(mesa: Mesa) {    
+    this.spinner = true;
     const datos = {
       tipo_comensales: mesa.tipo_comensales
     }

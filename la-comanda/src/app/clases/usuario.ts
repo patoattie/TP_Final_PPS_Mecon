@@ -1,7 +1,7 @@
 export class Usuario {
     nombre:string;
     apellido:string;
-    dni: number;
+    dni: string;
     perfil: string;
     foto: string;
     baja:boolean;

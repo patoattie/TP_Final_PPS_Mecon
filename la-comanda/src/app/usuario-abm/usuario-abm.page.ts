@@ -1,25 +1,24 @@
 import { Component, OnInit } from '@angular/core';
-import { Mesa } from 'src/app/clases/mesa';
+import { UsuarioService } from 'src/app/servicios-mecha/usuario.service';
+import { Usuario } from 'src/app/clases/usuario';
 import { Camera, CameraOptions } from '@ionic-native/camera/ngx';
 import { File } from '@ionic-native/file/ngx';
 import { BarcodeScanner } from "@ionic-native/barcode-scanner/ngx";
 import { Vibration } from '@ionic-native/vibration/ngx';
-import { MesaService } from '../servicios-mecha/mesa.service';
-
 
 @Component({
-  selector: 'app-mesa-abm',
-  templateUrl: './mesa-abm.page.html',
-  styleUrls: ['./mesa-abm.page.scss'],
+  selector: 'app-usuario-abm',
+  templateUrl: './usuario-abm.page.html',
+  styleUrls: ['./usuario-abm.page.scss'],
 })
-export class MesaAbmPage implements OnInit {
+export class UsuarioAbmPage implements OnInit {
   modificacion: boolean;
 
-  mesa: Mesa = new Mesa();
+  usuario: Usuario = new Usuario();
   public Archivofoto:any;
   ok: boolean = true;
   parse: any;
-  mesas: Mesa[];
+  usuarios: Usuario[];
   mensaje: string = " ";
   image: any;
   mifoto: any;
@@ -31,47 +30,48 @@ export class MesaAbmPage implements OnInit {
  
 
 
-  constructor(private vibration: Vibration, public mesaServicio: MesaService, private camera: Camera, private file: File, private barcodeScanner: BarcodeScanner) { }
+  constructor(private vibration: Vibration, public usuarioServicio: UsuarioService, private camera: Camera, private file: File, private barcodeScanner: BarcodeScanner) { }
 
   ngOnInit() {
     
-    this.traerTodasMesas();
-    /*  this.mesaServicio.traerUnaMesa('mesa_3').subscribe(mesa => {
-        console.log(mesa.numero);
+    this.traerTodasUsuarios();
+    /*  this.usuarioServicio.traerUnaUsuario('usuario_3').subscribe(usuario => {
+        console.log(usuario.numero);
      });
      */
-   // this.traerMesa(3);
+   // this.traerUsuario(3);
   }
 
 
-  traerTodasMesas(){
-  this.mesaServicio.traerTodasMesas()
-  .subscribe(mesas => {
-    this.mesas = mesas;
-    // console.log(this.mesas[0].numero);
+  traerTodasUsuarios(){
+  this.usuarioServicio.traerTodasUsuarios()
+  .subscribe(usuarios => {
+    this.usuarios = usuarios;
+    // console.log(this.usuarios[0].numero);
   });
 }
 
 
-  altaMesa() {
+  altaUsuario() {
     this.mensaje = " ";
      this.estAnim('alta', 'animation-target'); 
-    if (this.mesas.some(mesa => mesa.numero == this.mesa.numero)) {
-      this.mensaje = "la mesa ya existe";
+    if (this.usuarios.some(usuario => usuario.dni == this.usuario.dni)) {
+      this.mensaje = "la usuario ya existe";
       this.vibration.vibrate(1000);
-      console.log('la mesa ya existe');
-    } else if (this.mesa.numero == undefined) {
-      this.mensaje = "Ingrese una la mesa válida";
+      console.log('la usuario ya existe');
+    } else if (this.usuario.dni == undefined) {
+      this.mensaje = "Ingrese una la usuario válida";
       this.vibration.vibrate(1000);
-      console.log('la mesa ya existe');
+      console.log('la usuario ya existe');
     }else {
       //if si no esta primero traertodos 
+      // La foto se tomará del celular. La foto puede ser tomada luego de realizar el alta
       if (this.Archivofoto != undefined) {
         console.info(this.Archivofoto);
-        this.mesaServicio.altaMesa(this.Archivofoto.fileName, this.Archivofoto.imgBlob, this.mesa);
-        this.mensaje = ("mesa cargada");
-        this.traerTodasMesas();
-        this.mesa = new Mesa();
+        this.usuarioServicio.altaUsuario(this.Archivofoto.fileName, this.Archivofoto.imgBlob, this.usuario);
+        this.mensaje = ("usuario cargada");
+        this.traerTodasUsuarios();
+        this.usuario = new Usuario();
       }
       else {
         this.mensaje = ("imagen no cargada");
@@ -139,64 +139,51 @@ vibrar(){
 
 
 
-  scanQr() {
-    this.barcodeScanner.scan().then(barcodeData => {
-      this.parse = JSON.parse(barcodeData.text);
-      this.mesa.numero = this.parse.numero;
-      this.mesa.comensales = this.parse.comensales;
-      this.mesa.tipo_comensales = this.parse.tipo_comensales;
+ 
+
+
+  bajaUsuario() {
+    this.mensaje = " ";
+    this.estAnim('baja', 'animation-target');
+    if (this.usuarios.some(usuario => usuario.dni == this.usuario.dni)) {
+      this.usuario.baja = true;
+      this.usuarioServicio.bajaUsuario(this.usuario); 
+      this.mensaje = ("Se dió de baja la usuario nro " + this.usuario.dni.toString());
+      this.traerTodasUsuarios();
+    } else {
+      this.mensaje = ("No se encontró la usuario indicada");
+      this.vibration.vibrate(1000);
+    }
+    this.usuario = new Usuario();
+    }
+  
+  scanQrDNI() {
+   const config = {     
+      formats : "PDF_417" // default: all but PDF_417 and RSS_EXPANDED    
+  }
+  
+    this.barcodeScanner.scan(config).then(result => {
+      setTimeout(() => {    //<<<---    using ()=> syntax
+       // alert("We got a barcode\n" +
+      //  "Result: " + result.text + "\n" +
+      //  "Format: " + result.format + "\n" +
+       // "Cancelled: " + result.cancelled);
+
+        //string.split([separator][, limit]);
+       let resultado = result.text.split('@', 6);
+        //me interes 1, 2 y 4
+       this.usuario.nombre = resultado[1];
+       this.usuario.apellido = resultado[2];
+       this.usuario.dni = resultado[4];
+		      
+    }, 1000);
+      
+      
     }).catch(err => {
-      this.mensaje = 'Error carga código Qr';
+      this.mensaje = 'Error carga código Qr' + err;
       this.vibration.vibrate(1000);
     });
   }
-
-
-
-  bajaMesa() {
-    this.mensaje = " ";
-    this.estAnim('baja', 'animation-target');
-    if (this.mesas.some(mesa => mesa.numero == this.mesa.numero)) {
-      this.mesa.baja = true;
-      this.mesaServicio.bajaMesa(this.mesa); 
-      this.mensaje = ("Se dió de baja la mesa nro " + this.mesa.numero.toString());
-      this.traerTodasMesas();
-    } else {
-      this.mensaje = ("No se encontró la mesa indicada");
-      this.vibration.vibrate(1000);
-    }
-    this.mesa = new Mesa();
-    }
-  
-    scanQrDNI() {
-      const config = {     
-         formats : "PDF_417" // default: all but PDF_417 and RSS_EXPANDED    
-     }
-     
-       this.barcodeScanner.scan(config).then(result => {
-         setTimeout(() => {    //<<<---    using ()=> syntax
-          // alert("We got a barcode\n" +
-         //  "Result: " + result.text + "\n" +
-         //  "Format: " + result.format + "\n" +
-          // "Cancelled: " + result.cancelled);
-   
-           //string.split([separator][, limit]);
-   
-           alert(result.text.split('@', 6));
-           //me interes 1, 2 y 4
-          
-       
-       
-   
-         
-       }, 1000);
-         
-         
-       }).catch(err => {
-         this.mensaje = 'Error carga código Qr' + err;
-         this.vibration.vibrate(1000);
-       });
-     }
 
 
   estAnim(elementId, animClasses) {
@@ -208,27 +195,27 @@ vibrar(){
     );
   }
 
-  modificarMesa() {
+  modificarUsuario() {
     this.mensaje = " ";
     this.estAnim('modificar', 'animation-target');
-    if (this.mesas.some(mesa => mesa.numero == this.mesa.numero)) {
-      this.mesaServicio.modificarMesa(this.mesa);
-      this.mensaje = ("Se modificó la mesa nro " + this.mesa.numero.toString());
-      this.traerTodasMesas();
+    if (this.usuarios.some(usuario => usuario.dni == this.usuario.dni)) {
+      this.usuarioServicio.modificarUsuario(this.usuario);
+      this.mensaje = ("Se modificó la usuario nro " + this.usuario.dni.toString());
+      this.traerTodasUsuarios();
     } else {
-      this.mensaje = ("No se encontró la mesa indicada");
+      this.mensaje = ("No se encontró la usuario indicada");
       this.vibration.vibrate(1000);
     
     }
-    this.mesa = new Mesa();
+    this.usuario = new Usuario();
    
   }
 
 
-  traerMesa(numero: number) {
-    let uid: string = 'mesa_' + numero.toString();
-    this.mesaServicio.traerUnaMesa(uid).subscribe(mesa => {
-     this.mesa = mesa;
+  traerUsuario(numero: number) {
+    let uid: string = 'usuario_' + numero.toString();
+    this.usuarioServicio.traerUnaUsuario(uid).subscribe(usuario => {
+     this.usuario = usuario;
 
   
     });
