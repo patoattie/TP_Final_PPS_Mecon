@@ -12,7 +12,7 @@ export class UsuarioService {
   porcentaje: number;
   finalizado: boolean;
   usuarios: Usuario[];
-  spinner:boolean;
+  spinner: boolean;
 
 
 
@@ -98,13 +98,31 @@ export class UsuarioService {
 
   }
 
+  altaUsuarioSinFoto(usuario: Usuario) {
+    this.spinner = true;
+    const datos = {
+      dni: usuario.dni,
+      nombre: usuario.nombre,
+      apellido: usuario.apellido,
+      perfil: usuario.perfil,
+      baja: false
+    }
+    var res = this.fireStore.collection('usuarios').doc('usuario_' + usuario.dni).set(datos).then(() => {
+      this.spinner = false;
+    })
+      .catch(function (error) {
+        console.log('error alta usuario');
+      });
+
+  }
 
 
 
-  traerUnaUsuario(uid:string): any {
+
+  traerUnaUsuario(uid: string): any {
     console.log(uid);
     return this.fireStore.collection('usuarios').doc(uid).valueChanges();
-    }
+  }
 
   traerTodasUsuarios() {
     let usuarios = this.fireStore.collection('usuarios').snapshotChanges()
@@ -120,21 +138,21 @@ export class UsuarioService {
   }
 
 
-  modificarUsuario(usuario: Usuario) {    
+  modificarUsuario(usuario: Usuario) {
     this.spinner = true;
     const datos = {
       perfil: usuario.perfil
     }
-   this.fireStore.collection('usuarios').doc('usuario_' + usuario.dni).update(datos).then(() =>  this.spinner = false);
+    this.fireStore.collection('usuarios').doc('usuario_' + usuario.dni).update(datos).then(() => this.spinner = false);
   }
 
- bajaUsuario(usuario: Usuario) {    
-  this.spinner = true;
+  bajaUsuario(usuario: Usuario) {
+    this.spinner = true;
     const datos = {
       baja: usuario.baja,
       motivo: usuario.motivo
     }
-   this.fireStore.collection('usuarios').doc('usuario_' + usuario.dni).update(datos).then(() => this.spinner = false);
+    this.fireStore.collection('usuarios').doc('usuario_' + usuario.dni).update(datos).then(() => this.spinner = false);
   }
 
   showLoadingSpinner(usuario: Usuario) {

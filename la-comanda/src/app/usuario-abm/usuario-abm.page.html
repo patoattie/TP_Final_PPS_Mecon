@@ -56,7 +56,7 @@
       <!--alta-->
       <div class="body" *ngIf="alta" style="overflow-y:scroll; height: 77vh;">
 
-        <form  [formGroup]="formAlta" (submit)="altaUsuario()">
+        <form [formGroup]="formAlta" id="formAlta" (submit)="altaUsuario()">
           <div class="font-bold col-cyan msg">
             <h2>Alta de Usuario</h2>
           </div>
@@ -75,11 +75,10 @@
               Número DNI:
             </span>
             <div class="form-line">
-              <input type="text" class="form-control" formControlName="dni"  name="dni" id="dni"  [(ngModel)]="usuario.dni" required autofocus>
-              <label  id="dni-error" class="error" for="dni"><span>{{ getError('dni')}}</span></label>
+              <input type="text" class="form-control" formControlName="dni" name="dni" id="dni"
+                [(ngModel)]="usuario.dni" required autofocus>
             </div>
-
-
+            <label id="dni-error" class="error" for="dni"><span>{{ getError(formAlta, 'dni')}}</span></label>
           </div>
 
           <div class="input-group">
@@ -87,26 +86,27 @@
               <i class="material-icons" style="font-size:25px; vertical-align: middle;">person</i> Nombre:
             </span>
             <div class="form-line">
-              <input type="text" class="form-control" formControlName="nombre" name="nombre" id="nombre" [(ngModel)]="usuario.nombre" name="nombre" required>
-             
+              <input type="text" class="form-control" formControlName="nombre" name="nombre" id="nombre"
+                [(ngModel)]="usuario.nombre" name="nombre" required>
             </div>
-            <label  id="nombre-error" class="error" for="nombre"><span>{{ getError('nombre')}}</span></label>
+            <label id="nombre-error" class="error" for="nombre"><span>{{ getError(formAlta, 'nombre')}}</span></label>
           </div>
 
           <div class="input-group">
             <span class="input-group-addon">
               <i class="material-icons" style="font-size:25px; vertical-align: middle;">person</i>Apellido:</span>
             <div class="form-line">
-              <input type="text" class="form-control" formControlName="apellido" name="apellido" id="apellido" [(ngModel)]="usuario.apellido" name="apellido" required>
-              <label  id="apellido-error" class="error" for="apellido"><span>{{ getError('apellido')}}</span></label>
-         
+              <input type="text" class="form-control" formControlName="apellido" name="apellido" id="apellido"
+                [(ngModel)]="usuario.apellido" name="apellido" required>
             </div>
+            <label id="apellido-error" class="error" for="apellido"><span>{{ getError(formAlta, 'apellido')}}</span></label>
+
           </div>
 
           <div class="input-group">
-              <span class="input-group-addon">
-                  <i class="material-icons" style="font-size:25px; vertical-align: middle;">person</i>Perfil:</span>
-              <div class="form-line btn-group bootstrap-select form-control show-tick mb-3"><button type="button"
+            <span class="input-group-addon">
+              <i class="material-icons" style="font-size:25px; vertical-align: middle;">person</i>Perfil:</span>
+            <div class="form-line btn-group bootstrap-select form-control show-tick mb-3"><button type="button"
                 class="btn dropdown-toggle btn-default" data-toggle="dropdown" title="Perfil"
                 aria-expanded="false"></button>
               <div class="dropdown-menu open" style="max-height: 413px; overflow: hidden; min-height: 0px;">
@@ -121,28 +121,31 @@
                         class="text">Empleado</span><span class="glyphicon glyphicon-ok check-mark"></span></a></li>
                 </ul>
               </div>
-              <select  formControlName="perfil" id="perfil" [(ngModel)]="usuario.perfil" name="perfil" class="form-control show-tick" tabindex="-98">
-                <option  name="perfil" value="supervisor">Supervisor</option>
-                <option  name="perfil" value="dueno">Dueño</option>
-                <option  name="perfil" value="empleado">Empleado</option>
+              <select formControlName="perfil" id="perfil" [(ngModel)]="usuario.perfil" name="perfil"
+                class="form-control show-tick" tabindex="-98">
+                <option name="perfil" value="supervisor">Supervisor</option>
+                <option name="perfil" value="dueno">Dueño</option>
+                <option name="perfil" value="empleado">Empleado</option>
               </select>
             </div>
+            <label id="perfil-error" class="error" for="perfil"><span>{{ getError(formAlta, 'perfil')}}</span></label>
+
           </div>
 
 
           <div class="input-group mt-4">
-          <button  id="foto" name="foto" (click)="tomarFoto()" class="form-group">
-            <span *ngIf="mifoto == undefined" class="input-group-addon">
-              <i class="material-icons" style="font-size:25px; vertical-align: middle;">photo_camera</i>Sacar una Foto
-            </span>
-            <img *ngIf="mifoto != undefined" [src]="mifoto" style="height: 30vh;">
+            <button id="foto" name="foto" (click)="tomarFoto()" class="form-group">
+              <span *ngIf="mifoto == undefined" class="input-group-addon">
+                <i class="material-icons" style="font-size:25px; vertical-align: middle;">photo_camera</i>Sacar una Foto
+              </span>
+              <img *ngIf="mifoto != undefined" [src]="mifoto" style="height: 30vh;">
 
-          </button>
+            </button>
           </div>
 
 
           <button class="btn btn-block btn-lg bg-green waves-effect" id="alta" type="submit"
-          [disabled]="!formAlta.valid">Alta</button>
+            [disabled]="!formAlta.valid">Alta</button>
 
 
 
@@ -155,8 +158,7 @@
 
       <!--baja-->
       <div class="body" *ngIf="baja" style="overflow-y:scroll; height: 77vh;">
-
-        <form id="mesa_baja" method="POST">
+        <form [formGroup]="formBaja" id="formBaja" (submit)="bajaUsuario()">
           <div class="font-bold col-cyan msg">
             <h2>Baja de Usuario</h2>
           </div>
@@ -175,23 +177,27 @@
               Número DNI:
             </span>
             <div class="form-line">
-              <input type="text" class="form-control" [(ngModel)]="usuario.dni" name="dni" required autofocus>
+              <input type="text" class="form-control" formControlName="dniBaja" name="dniBaja" id="dniBaja"
+                [(ngModel)]="usuario.dni" required autofocus>
             </div>
+            <label id="dniBaja-error" class="error" for="dniBaja"><span>{{ getError(formBaja, 'dniBaja')}}</span></label>
           </div>
-
           <div class="input-group">
             <span class="input-group-addon">
               <i class="material-icons" style="font-size:25px; vertical-align: middle;">crop_square</i>Motivo baja:
             </span>
             <div class="form-line">
-              <input type="text" class="form-control" [(ngModel)]="usuario.motivo" name="motivo" required>
+              <input type="text" class="form-control" id="motivoBaja" formControlName="motivoBaja" [(ngModel)]="usuario.motivo"
+                name="motivoBaja" required>
             </div>
+            <label id="motivoBaja-error" class="error" for="motivoBaja"><span>{{getError(formBaja, 'motivoBaja')}}</span></label>
           </div>
 
 
 
 
-          <button class="btn btn-block btn-lg bg-red waves-effect" id="baja" type="submit" (click)="bajaUsuario()">Baja
+          <button class="btn btn-block btn-lg bg-red waves-effect" [disabled]="!formBaja.valid" id="baja"
+            type="submit">Baja
             <ion-spinner *ngIf="usuario.spin" name="lines-small"></ion-spinner>
           </button>
 
@@ -207,7 +213,7 @@
       <!--modificacion-->
       <div class="body" *ngIf="modificacion" style="overflow-y:scroll; height: 77vh;">
 
-        <form id="mesa_mod" method="POST">
+        <form [formGroup]="formMod" id="formMod" (submit)="modificarUsuario()">
 
           <div class="font-bold col-cyan msg">
             <h2>Modifición de Usuario</h2>
@@ -226,13 +232,15 @@
               Número DNI:
             </span>
             <div class="form-line">
-              <input type="text" class="form-control" [(ngModel)]="usuario.dni" name="dni" required autofocus>
+              <input type="text" class="form-control" formControlName="dniMod" name="dniMod" id="dniMod"
+                [(ngModel)]="usuario.dni" required autofocus>
             </div>
+            <label id="dniMod-error" class="error" for="dniMod"><span>{{ getError(formMod, 'dniMod')}}</span></label>
           </div>
           <div class="input-group">
-              <span class="input-group-addon">
-                  <i class="material-icons" style="font-size:25px; vertical-align: middle;">person</i>Perfil:</span>
-              <div class="form-line btn-group bootstrap-select form-control show-tick mb-3"><button type="button"
+            <span class="input-group-addon">
+              <i class="material-icons" style="font-size:25px; vertical-align: middle;">person</i>Perfil:</span>
+            <div class="form-line btn-group bootstrap-select form-control show-tick mb-3"><button type="button"
                 class="btn dropdown-toggle btn-default" data-toggle="dropdown" title="Perfil"
                 aria-expanded="false"></button>
               <div class="dropdown-menu open" style="max-height: 413px; overflow: hidden; min-height: 0px;">
@@ -247,21 +255,24 @@
                         class="text">Empleado</span><span class="glyphicon glyphicon-ok check-mark"></span></a></li>
                 </ul>
               </div>
-              <select  [(ngModel)]="usuario.perfil" name="perfil" class="form-control show-tick" tabindex="-98">
-                <option  name="perfil" value="supervisor">Supervisor</option>
-                <option  name="perfil" value="dueno">Dueño</option>
-                <option  name="perfil" value="mozo">Mozo</option>
-                <option  name="perfil" value="metre">Metre</option>
-                <option  name="perfil" value="bartender">Bartender</option>
-                <option  name="perfil" value="cocinero">Cocinero</option>
+              <select formControlName="perfilMod" id="perfilMod" [(ngModel)]="usuario.perfil" name="perfilMod"
+                class="form-control show-tick" tabindex="-98">
+                <option name="perfilMod" value="supervisor">Supervisor</option>
+                <option name="perfilMod" value="dueno">Dueño</option>
+                <option name="perfilMod" value="mozo">Mozo</option>
+                <option name="perfilMod" value="metre">Metre</option>
+                <option name="perfilMod" value="bartender">Bartender</option>
+                <option name="perfilMod" value="cocinero">Cocinero</option>
               </select>
             </div>
+            <label id="perfilMod-error" class="error" for="perfilMod"><span>{{ getError(formMod, 'perfilMod')}}</span></label>
+
           </div>
 
 
 
           <button class="btn btn-block btn-lg bg-orange waves-effect" id="modificar" type="submit"
-            (click)="modificarUsuario()">Modificacion</button>
+            [disabled]="!formMod.valid">Modificación</button>
 
 
         </form>

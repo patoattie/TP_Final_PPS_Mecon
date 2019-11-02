@@ -6,6 +6,7 @@ import { File } from '@ionic-native/file/ngx';
 import { BarcodeScanner } from "@ionic-native/barcode-scanner/ngx";
 import { Vibration } from '@ionic-native/vibration/ngx';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { NodeCompatibleEventEmitter } from 'rxjs/internal/observable/fromEvent';
 
 @Component({
   selector: 'app-usuario-abm',
@@ -25,18 +26,22 @@ export class UsuarioAbmPage implements OnInit {
   mifoto: any;
   boton: HTMLElement;
   menu_b: boolean = true;
-  alta: boolean = true;
+  alta: boolean=true;
   baja: boolean;
   prueba: boolean;
   public formAlta: FormGroup;
   formBaja: FormGroup;
   formMod: FormGroup;
 
+
+ 
+
+
  // firstName: ['', Validators.compose([Validators.maxLength(30), Validators.pattern('[a-zA-Z ]*'), Validators.required])],
   //lastName: ['', Validators.compose([Validators.maxLength(30), Validators.pattern('[a-zA-Z ]*'), Validators.required])],
  // age: ['', AgeValidator.isValid]
 
-  constructor(public formBuilder: FormBuilder, private vibration: Vibration, public usuarioServicio: UsuarioService, private camera: Camera, private file: File, private barcodeScanner: BarcodeScanner) {
+  constructor(public formBuilder: FormBuilder,public formBuilder2: FormBuilder, public formBuilder3: FormBuilder, private vibration: Vibration, public usuarioServicio: UsuarioService, private camera: Camera, private file: File, private barcodeScanner: BarcodeScanner) {
     this.formAlta = this.formBuilder.group(
       {
         nombre: ['', Validators.compose([Validators.maxLength(30),Validators.minLength(2), Validators.pattern('[a-zA-Z ]*'), Validators.required])],
@@ -45,22 +50,22 @@ export class UsuarioAbmPage implements OnInit {
         perfil: ['', Validators.compose([Validators.required])],
        
       });
-    this.formBaja = this.formBuilder.group(
+    this.formBaja = this.formBuilder2.group(
       {
-        dni:  ['', Validators.compose([Validators.maxLength(10),Validators.minLength(7), Validators.pattern('[0-9]*'), Validators.required])],
-        motivo: ['', Validators.compose([Validators.minLength(6), Validators.required])]
+        dniBaja:  ['', Validators.compose([Validators.maxLength(10),Validators.minLength(7), Validators.pattern('[0-9]*'), Validators.required])],
+        motivoBaja: ['', Validators.compose([Validators.minLength(6), Validators.required])]
       });
-    this.formMod = this.formBuilder.group(
+    this.formMod = this.formBuilder3.group(
       {
-        dni:  ['', Validators.compose([Validators.maxLength(10),Validators.minLength(7), Validators.pattern('[0-9]*'), Validators.required])],
-        perfil: ['', Validators.compose([Validators.required])]
+        dniMod:  ['', Validators.compose([Validators.maxLength(10),Validators.minLength(7), Validators.pattern('[0-9]*'), Validators.required])],
+        perfilMod: ['', Validators.compose([Validators.required])]
       });
   }
 
-  public getError(controlName: string): string {
+  public getError(form:any,controlName: string): string {
     let error:any;
     let mse="";
-    const control = this.formAlta.get(controlName);
+    const control = form.get(controlName);
     if (control.touched && control.errors != null) {
       console.info(JSON.stringify(control.errors));
       error = JSON.parse(JSON.stringify(control.errors));
@@ -115,7 +120,14 @@ export class UsuarioAbmPage implements OnInit {
     } else {
       //if si no esta primero traertodos 
       // La foto se tomará del celular. La foto puede ser tomada luego de realizar el alta
-      if (this.Archivofoto != undefined) {
+      if (this.usuario.perfil != 'supervisor' && this.usuario.perfil != 'dueno' && this.Archivofoto == undefined ) {
+        //registro sin fot de empleado
+        this.usuarioServicio.altaUsuarioSinFoto(this.usuario);
+        this.mensaje = ("usuario cargada");
+        this.traerTodasUsuarios();
+        this.usuario = new Usuario();
+      }
+      else if (this.Archivofoto != undefined) {
         console.info(this.Archivofoto);
         this.usuarioServicio.altaUsuario(this.Archivofoto.fileName, this.Archivofoto.imgBlob, this.usuario);
         this.mensaje = ("usuario cargada");
