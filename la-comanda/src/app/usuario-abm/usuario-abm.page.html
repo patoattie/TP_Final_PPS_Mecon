@@ -56,7 +56,7 @@
       <!--alta-->
       <div class="body" *ngIf="alta" style="overflow-y:scroll; height: 77vh;">
 
-        <form id="mesa_alta" method="POST">
+        <form  [formGroup]="formAlta" (submit)="altaUsuario()">
           <div class="font-bold col-cyan msg">
             <h2>Alta de Usuario</h2>
           </div>
@@ -75,7 +75,8 @@
               Número DNI:
             </span>
             <div class="form-line">
-              <input type="text" class="form-control" [(ngModel)]="usuario.dni" name="dni" required autofocus>
+              <input type="text" class="form-control" formControlName="dni"  name="dni" id="dni"  [(ngModel)]="usuario.dni" required autofocus>
+              <label  id="dni-error" class="error" for="dni"><span>{{ getError('dni')}}</span></label>
             </div>
 
 
@@ -86,15 +87,19 @@
               <i class="material-icons" style="font-size:25px; vertical-align: middle;">person</i> Nombre:
             </span>
             <div class="form-line">
-              <input type="text" class="form-control" [(ngModel)]="usuario.nombre" name="nombre" required>
+              <input type="text" class="form-control" formControlName="nombre" name="nombre" id="nombre" [(ngModel)]="usuario.nombre" name="nombre" required>
+             
             </div>
+            <label  id="nombre-error" class="error" for="nombre"><span>{{ getError('nombre')}}</span></label>
           </div>
 
           <div class="input-group">
             <span class="input-group-addon">
               <i class="material-icons" style="font-size:25px; vertical-align: middle;">person</i>Apellido:</span>
             <div class="form-line">
-              <input type="text" class="form-control" [(ngModel)]="usuario.apellido" name="apellido" required>
+              <input type="text" class="form-control" formControlName="apellido" name="apellido" id="apellido" [(ngModel)]="usuario.apellido" name="apellido" required>
+              <label  id="apellido-error" class="error" for="apellido"><span>{{ getError('apellido')}}</span></label>
+         
             </div>
           </div>
 
@@ -116,7 +121,7 @@
                         class="text">Empleado</span><span class="glyphicon glyphicon-ok check-mark"></span></a></li>
                 </ul>
               </div>
-              <select  [(ngModel)]="usuario.perfil" name="perfil" class="form-control show-tick" tabindex="-98">
+              <select  formControlName="perfil" id="perfil" [(ngModel)]="usuario.perfil" name="perfil" class="form-control show-tick" tabindex="-98">
                 <option  name="perfil" value="supervisor">Supervisor</option>
                 <option  name="perfil" value="dueno">Dueño</option>
                 <option  name="perfil" value="empleado">Empleado</option>
@@ -126,7 +131,7 @@
 
 
           <div class="input-group mt-4">
-          <button (click)="tomarFoto()" class="form-group">
+          <button  id="foto" name="foto" (click)="tomarFoto()" class="form-group">
             <span *ngIf="mifoto == undefined" class="input-group-addon">
               <i class="material-icons" style="font-size:25px; vertical-align: middle;">photo_camera</i>Sacar una Foto
             </span>
@@ -137,7 +142,7 @@
 
 
           <button class="btn btn-block btn-lg bg-green waves-effect" id="alta" type="submit"
-            (click)="altaUsuario()">Alta</button>
+          [disabled]="!formAlta.valid">Alta</button>
 
 
 

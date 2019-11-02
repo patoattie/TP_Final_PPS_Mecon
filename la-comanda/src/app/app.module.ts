@@ -16,8 +16,10 @@ import { Camera } from '@ionic-native/camera/ngx';
 import {File } from "@ionic-native/file/ngx";
 import { AngularFireStorageModule } from '@angular/fire/storage';
 import { BarcodeScanner } from '@ionic-native/barcode-scanner/ngx';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { Vibration } from '@ionic-native/vibration/ngx';
+
+
 
 
 @NgModule({
@@ -29,6 +31,8 @@ import { Vibration } from '@ionic-native/vibration/ngx';
      AngularFirestoreModule,
      AngularFireStorageModule,
      FormsModule,
+     BrowserModule,
+     ReactiveFormsModule
   ],
   providers: [ 
   	Vibration,
