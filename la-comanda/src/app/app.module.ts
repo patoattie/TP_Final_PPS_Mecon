@@ -5,69 +5,41 @@ import { RouteReuseStrategy } from '@angular/router';
 import { IonicModule, IonicRouteStrategy } from '@ionic/angular';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
-
+import { environment } from "../environments/environment";
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
-
-import { AngularFireModule } from "@angular/fire";
-import { AngularFireAuthModule } from "@angular/fire/auth";
-import { AngularFirestoreModule, FirestoreSettingsToken } from "@angular/fire/firestore";
-import { environment } from "../environments/environment";
 import { ScreenOrientation } from '@ionic-native/screen-orientation/ngx';
-import { ReactiveFormsModule } from '@angular/forms'; // <-- NgModel lives here
-import { AuthService } from './servicios/auth.service';
-//import { LoginComponent } from './componentes/login/login.component';
-import { HomePageModule } from './home/home.module';
-import { SplashPageModule } from './splash/splash.module';
-import { CabeceraComponent } from './componentes/cabecera/cabecera.component';
-import { AltaPageModule } from './alta/alta.module';
-import { MesaComponent } from './componentes/abmMesa/mesa.component';
-import { Camera, CameraOptions } from '@ionic-native/camera/ngx';
-import { File } from '@ionic-native/file/ngx';
+import { AngularFireModule } from '@angular/fire';
+import { AngularFireAuthModule } from '@angular/fire/auth';
+import { AngularFirestoreModule } from "@angular/fire/firestore";
+import { Camera } from '@ionic-native/camera/ngx';
+import {File } from "@ionic-native/file/ngx";
+import { AngularFireStorageModule } from '@angular/fire/storage';
+import { BarcodeScanner } from '@ionic-native/barcode-scanner/ngx';
 import { FormsModule } from '@angular/forms';
-import { AngularFireStorage } from '@angular/fire/storage';
-import { BarcodeScanner } from "@ionic-native/barcode-scanner/ngx";
-import { PrincipalPipe } from './principal.pipe';
-
-
-
-
-
+import { Vibration } from '@ionic-native/vibration/ngx';
 
 
 @NgModule({
-  declarations: [
-    //LoginComponent,
-    CabeceraComponent,
-    AppComponent,
-    MesaComponent,
-    PrincipalPipe
-  ],
+  declarations: [AppComponent],
   entryComponents: [],
-  imports: [
-    BrowserModule, 
-    IonicModule.forRoot(),
+  imports: [  BrowserModule, IonicModule.forRoot(), AppRoutingModule,
     AngularFireModule.initializeApp(environment.firebase),
-    AngularFireAuthModule,
-    AngularFirestoreModule,
-    ReactiveFormsModule,
-    HomePageModule,
-    AltaPageModule,
-    SplashPageModule,
-    AppRoutingModule,
-    FormsModule,
+     AngularFireAuthModule,
+     AngularFirestoreModule,
+     AngularFireStorageModule,
+     FormsModule,
   ],
-  providers: [
+  providers: [ 
+  	Vibration,
     ScreenOrientation,   
     StatusBar,
     SplashScreen,  
-    AuthService,
-    AngularFireStorage,    
-    BarcodeScanner,
-    File,
     Camera,
-    { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },  
-    { provide: FirestoreSettingsToken, useValue: {} }
+    File,
+    BarcodeScanner,
+    { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
+      
   ],
   bootstrap: [AppComponent]
 })

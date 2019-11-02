@@ -62,8 +62,8 @@
                             <i class="material-icons">person</i>
                         </span>
                         <div class="form-line">
-                            <input type="text" class="form-control" name="username" placeholder="Nombre usuario" required
-                                autofocus>
+                            <input type="text" class="form-control" name="username" placeholder="Nombre usuario"
+                                required autofocus>
                         </div>
                     </div>
                     <div class="input-group">
@@ -75,13 +75,13 @@
                         </div>
                     </div>
                     <div class="row">
-                       
+
                         <div class="col-xs-4">
                             <button class="btn btn-block bg-pink waves-effect" type="submit">Ingresar</button>
                         </div>
                     </div>
                     <div class="row m-t-15 m-b--20">
-                          <div class="col-xs-6 align-right">
+                        <div class="col-xs-6 align-right">
                             <a href="#">¿Olvidó loa clave?</a>
                         </div>
                     </div>
@@ -92,25 +92,23 @@
 
     <div example-container>
 
-        <ion-fab horizontal="center" vertical="bottom" slot="fixed" >
-                <ion-button color="#0d6f92" style="width: 200px">
-                        USUARIOS TESTING
+        <ion-fab horizontal="center" vertical="bottom" slot="fixed">
+            <ion-button color="#0d6f92" style="width: 200px">
+                USUARIOS TESTING
 
-                </ion-button>
-            
-          
-            <ion-fab-list  side="top" >
-                    <ion-button color="#0d6f92" style="width: 200px"
-                    [routerLink]="['/mesa']" 
-                   >
-                    Alta Mesa (borrarlo luego)
-                </ion-button>
-                    <ion-button color="#0d6f92" style="width: 200px"
-                    [routerLink]="['/alta']" 
-                   >
+            </ion-button>
+
+
+            <ion-fab-list side="top">
+                <ion-button color="#0d6f92" style="width: 200px" [routerLink]="['/alta']">
                     Alta (borrarlo luego)
                 </ion-button>
-
+                <ion-button color="#0d6f92" style="width: 200px" [routerLink]="['/mesa-abm']">
+                    abm Mesa (borrarlo luego)
+                </ion-button>
+                <ion-button color="#0d6f92" style="width: 200px" [routerLink]="['/alta-productos']">
+                    alta-productos
+                </ion-button>
                 <ion-button color="#0d6f92" style="width: 200px"
                     (click)="usuario.nombre='supervisor@nose.com';usuario.clave='123456'">
                     Supervisor

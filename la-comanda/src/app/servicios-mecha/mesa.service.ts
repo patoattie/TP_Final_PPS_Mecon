@@ -109,17 +109,18 @@ export class MesaService {
 
   modificarMesa(mesa: Mesa) {    
     const datos = {
-     motivo: mesa.tipo_comensales
+      tipo_comensales: mesa.tipo_comensales
     }
-   this.fireStore.collection('mesas').doc('mesa_' + mesa.numero).update(datos).then(() => console.log("hola"));
+   this.fireStore.collection('mesas').doc('mesa_' + mesa.numero).update(datos).then(() =>  this.spinner = false);
   }
 
  bajaMesa(mesa: Mesa) {    
+  this.spinner = true;
     const datos = {
       baja: mesa.baja,
       motivo: mesa.motivo
     }
-   this.fireStore.collection('mesas').doc('mesa_' + mesa.numero).update(datos).then(() => console.log("hola"));
+   this.fireStore.collection('mesas').doc('mesa_' + mesa.numero).update(datos).then(() =>   this.spinner = false);
   }
 
   showLoadingSpinner(mesa: Mesa) {

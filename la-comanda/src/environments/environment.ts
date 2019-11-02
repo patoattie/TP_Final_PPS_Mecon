@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  firebase: {
+  firebase:{
     apiKey: "AIzaSyCqnMlNSBz0YE3Lw0WN5xftJ9O1_euInnI",
     authDomain: "la-comanda-29ab5.firebaseapp.com",
     databaseURL: "https://la-comanda-29ab5.firebaseio.com",

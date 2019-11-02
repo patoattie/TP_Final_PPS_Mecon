@@ -1,22 +1,22 @@
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { PrincipalPage } from './principal.page';
+import { MesaAbmPage } from './mesa-abm.page';
 
-describe('PrincipalPage', () => {
-  let component: PrincipalPage;
-  let fixture: ComponentFixture<PrincipalPage>;
+describe('MesaAbmPage', () => {
+  let component: MesaAbmPage;
+  let fixture: ComponentFixture<MesaAbmPage>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ PrincipalPage ],
+      declarations: [ MesaAbmPage ],
       schemas: [CUSTOM_ELEMENTS_SCHEMA],
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(PrincipalPage);
+    fixture = TestBed.createComponent(MesaAbmPage);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
