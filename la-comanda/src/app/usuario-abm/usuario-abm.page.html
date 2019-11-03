@@ -54,19 +54,44 @@
 
 
       <!--alta-->
-      <div class="body" *ngIf="alta" style="overflow-y:scroll; height: 77vh;">
+      <div class="body" *ngIf="alta" style="overflow-y:scroll; height: 81vh;">
+
+          <button (click)="scanQrDNI()" class="form-group mb-3">
+              <span class="input-group-addon">
+                <i class="material-icons" style="font-size:25px; vertical-align: middle;">settings_overscan</i>
+                Scanear DNI
+              </span>
+            </button>
 
         <form [formGroup]="formAlta" id="formAlta" (submit)="altaUsuario()">
           <div class="font-bold col-cyan msg">
             <h2>Alta de Usuario</h2>
           </div>
 
-          <button (click)="scanQrDNI()" class="form-group mb-3">
-            <span class="input-group-addon">
-              <i class="material-icons" style="font-size:25px; vertical-align: middle;">settings_overscan</i>
-              Scanear DNI
-            </span>
-          </button>
+
+
+<!--perfil-->
+          <div class="input-group mb-0" style="margin-bottom: 0; padding-bottom: 0">
+            <div class="row">
+            <div class="col-xs-3 m-0 p-0">
+              <span class="input-group-addon">
+              <i class="material-icons" style="font-size:25px; vertical-align: middle;">person</i>Perfil:</span>
+            </div>
+            <div class="col-xs-9">           
+              <select formControlName="perfil" id="perfil" [(ngModel)]="usuario.perfil" name="perfil"
+                class="form-control show-tick" style="border: #00c3ff solid 1px; margin-bottom: 0; padding-bottom: 0" tabindex="-98">
+                <option name="perfilMod" value="supervisor">Supervisor</option>
+                <option name="perfilMod" value="dueno">Dueño</option>
+                <option name="perfilMod" value="mozo">Mozo</option>
+                <option name="perfilMod" value="metre">Metre</option>
+                <option name="perfilMod" value="bartender">Bartender</option>
+                <option name="perfilMod" value="cocinero">Cocinero</option>
+              </select>
+          </div>
+          </div>
+            <label id="perfil-error" class="error" for="perfil"><span>{{ getError(formAlta, 'perfil')}}</span></label>
+          </div>
+          <!-- fin perfil-->
 
 
           <div class="input-group">
@@ -103,34 +128,7 @@
 
           </div>
 
-          <div class="input-group">
-            <span class="input-group-addon">
-              <i class="material-icons" style="font-size:25px; vertical-align: middle;">person</i>Perfil:</span>
-            <div class="form-line btn-group bootstrap-select form-control show-tick mb-3"><button type="button"
-                class="btn dropdown-toggle btn-default" data-toggle="dropdown" title="Perfil"
-                aria-expanded="false"></button>
-              <div class="dropdown-menu open" style="max-height: 413px; overflow: hidden; min-height: 0px;">
-                <ul class="dropdown-menu inner" role="menu"
-                  style="max-height: 403px; overflow-y: auto; min-height: 0px;">
-                  <li data-original-index="0" class="selected"><a tabindex="0" class="" style=""
-                      data-tokens="null"><span class="text">Supervisor</span><span
-                        class="glyphicon glyphicon-ok check-mark"></span></a></li>
-                  <li data-original-index="1" class=""><a tabindex="0" class="" style="" data-tokens="null"><span
-                        class="text">Dueño</span><span class="glyphicon glyphicon-ok check-mark"></span></a></li>
-                  <li data-original-index="2" class=""><a tabindex="0" class="" style="" data-tokens="null"><span
-                        class="text">Empleado</span><span class="glyphicon glyphicon-ok check-mark"></span></a></li>
-                </ul>
-              </div>
-              <select formControlName="perfil" id="perfil" [(ngModel)]="usuario.perfil" name="perfil"
-                class="form-control show-tick" tabindex="-98">
-                <option name="perfil" value="supervisor">Supervisor</option>
-                <option name="perfil" value="dueno">Dueño</option>
-                <option name="perfil" value="empleado">Empleado</option>
-              </select>
-            </div>
-            <label id="perfil-error" class="error" for="perfil"><span>{{ getError(formAlta, 'perfil')}}</span></label>
-
-          </div>
+    
 
 
           <div class="input-group">
@@ -154,13 +152,12 @@
               <label id="clave-error" class="clave" for="clave"><span>{{ getError(formAlta, 'clave')}}</span></label>
           </div>
 
-          <div class="input-group mt-4">
+          <div class="input-group" style="margin-bottom: 0; padding-bottom: 0">
             <button id="foto" name="foto" (click)="tomarFoto()" class="form-group">
               <span *ngIf="mifoto == undefined" class="input-group-addon">
                 <i class="material-icons" style="font-size:25px; vertical-align: middle;">photo_camera</i>Sacar una Foto
               </span>
               <img *ngIf="mifoto != undefined" [src]="mifoto" style="height: 30vh;">
-
             </button>
           </div>
 
@@ -172,25 +169,27 @@
 
         </form>
         <br>
-        <p class="font-bold col-pink">{{mensaje}}</p>
+        <p class="font-bold col-pink"></p>
 
       </div>
 
 
       <!--baja-->
-      <div class="body" *ngIf="baja" style="overflow-y:scroll; height: 77vh;">
+      <div class="body" *ngIf="baja" style="overflow-y:scroll; height: 81vh;">
+
+          <button (click)="scanQrDNI()" class="form-group mb-3">
+              <span class="input-group-addon">
+                <i class="material-icons" style="font-size:25px; vertical-align: middle;">settings_overscan</i>
+                Scanear DNI
+              </span>
+            </button>
+  
         <form [formGroup]="formBaja" id="formBaja" (submit)="bajaUsuario()">
           <div class="font-bold col-cyan msg">
             <h2>Baja de Usuario</h2>
           </div>
 
-          <button (click)="scanQrDNI()" class="form-group mb-3">
-            <span class="input-group-addon">
-              <i class="material-icons" style="font-size:25px; vertical-align: middle;">settings_overscan</i>
-              Scanear DNI
-            </span>
-          </button>
-
+       
 
           <div class="input-group">
             <span class="input-group-addon">
@@ -226,27 +225,27 @@
 
         </form>
         <br>
-        <p class="font-bold col-pink">{{mensaje}}</p>
+        <p class="font-bold col-pink"></p>
 
       </div>
 
 
       <!--modificacion-->
-      <div class="body" *ngIf="modificacion" style="overflow-y:scroll; height: 77vh;">
+      <div class="body" *ngIf="modificacion" style="overflow-y:scroll; height: 81vh;">
+
+          <button (click)="scanQrDNI()" class="form-group mb-3">
+              <span class="input-group-addon">
+                <i class="material-icons" style="font-size:25px; vertical-align: middle;">settings_overscan</i>
+                Scanear DNI
+              </span>
+            </button>
 
         <form [formGroup]="formMod" id="formMod" (submit)="modificarUsuario()">
 
           <div class="font-bold col-cyan msg">
             <h2>Modifición de Usuario</h2>
           </div>
-          <button (click)="scanQrDNI()" class="form-group mb-3">
-            <span class="input-group-addon">
-              <i class="material-icons" style="font-size:25px; vertical-align: middle;">settings_overscan</i>
-              Scanear DNI
-            </span>
-          </button>
-
-
+        
           <div class="input-group">
             <span class="input-group-addon">
               <i class="material-icons" style="font-size:25px; vertical-align: middle;">crop_square</i>
@@ -258,37 +257,31 @@
             </div>
             <label id="dniMod-error" class="error" for="dniMod"><span>{{ getError(formMod, 'dniMod')}}</span></label>
           </div>
-          <div class="input-group">
-            <span class="input-group-addon">
-              <i class="material-icons" style="font-size:25px; vertical-align: middle;">person</i>Perfil:</span>
-            <div class="form-line btn-group bootstrap-select form-control show-tick mb-3"><button type="button"
-                class="btn dropdown-toggle btn-default" data-toggle="dropdown" title="Perfil"
-                aria-expanded="false"></button>
-              <div class="dropdown-menu open" style="max-height: 413px; overflow: hidden; min-height: 0px;">
-                <ul class="dropdown-menu inner" role="menu"
-                  style="max-height: 403px; overflow-y: auto; min-height: 0px;">
-                  <li data-original-index="0" class="selected"><a tabindex="0" class="" style=""
-                      data-tokens="null"><span class="text">Supervisor</span><span
-                        class="glyphicon glyphicon-ok check-mark"></span></a></li>
-                  <li data-original-index="1" class=""><a tabindex="0" class="" style="" data-tokens="null"><span
-                        class="text">Dueño</span><span class="glyphicon glyphicon-ok check-mark"></span></a></li>
-                  <li data-original-index="2" class=""><a tabindex="0" class="" style="" data-tokens="null"><span
-                        class="text">Empleado</span><span class="glyphicon glyphicon-ok check-mark"></span></a></li>
-                </ul>
+
+          <!--perfil mod-->
+          <div class="input-group mb-0" style="margin-bottom: 0; padding-bottom: 0">
+              <div class="row">
+              <div class="col-xs-3 m-0 p-0">
+                <span class="input-group-addon">
+                <i class="material-icons" style="font-size:25px; vertical-align: middle;">person</i>Perfil:</span>
               </div>
-              <select formControlName="perfilMod" id="perfilMod" [(ngModel)]="usuario.perfil" name="perfilMod"
-                class="form-control show-tick" tabindex="-98">
-                <option name="perfilMod" value="supervisor">Supervisor</option>
-                <option name="perfilMod" value="dueno">Dueño</option>
-                <option name="perfilMod" value="mozo">Mozo</option>
-                <option name="perfilMod" value="metre">Metre</option>
-                <option name="perfilMod" value="bartender">Bartender</option>
-                <option name="perfilMod" value="cocinero">Cocinero</option>
-              </select>
+              <div class="col-xs-9">  
+                  <select formControlName="perfilMod" id="perfilMod" [(ngModel)]="usuario.perfil" name="perfilMod"
+                  class="form-control show-tick" style="border: #00c3ff solid 1px; margin-bottom: 0; padding-bottom: 0"  tabindex="-98">         
+                  <option name="perfilMod" value="supervisor">Supervisor</option>
+                  <option name="perfilMod" value="dueno">Dueño</option>
+                  <option name="perfilMod" value="mozo">Mozo</option>
+                  <option name="perfilMod" value="metre">Metre</option>
+                  <option name="perfilMod" value="bartender">Bartender</option>
+                  <option name="perfilMod" value="cocinero">Cocinero</option>
+                </select>
+            </div>
             </div>
             <label id="perfilMod-error" class="error" for="perfilMod"><span>{{ getError(formMod, 'perfilMod')}}</span></label>
-
           </div>
+            <!-- fin perfil mod-->
+
+      
 
 
 
@@ -298,7 +291,7 @@
 
         </form>
         <br>
-        <p class="font-bold col-pink">{{mensaje}}</p>
+        <p class="font-bold col-pink"></p>
 
       </div>
     </div>
@@ -306,14 +299,14 @@
 
 
     <!--menu-->
-    <div *ngIf="menu_b" style="position: absolute; bottom: 0; width: 100%;">
+    <div *ngIf="menu_b" style="position: absolute; bottom: 0; width: 100%;z-index: 1200;">
       <div class="row">
-        <div class="col-xs-4">
+        <div class="col-xs-3">
           <div class="row">
             <button class="btn bg-green  btn-block btn-lg waves-effect" (click)="menu('alta')">Alta</button>
           </div>
         </div>
-        <div class="col-xs-4">
+        <div class="col-xs-3">
           <div class="row">
             <button class="btn bg-red btn-block btn-lg  waves-effect" (click)="menu('baja')">Baja</button>
           </div>
@@ -324,12 +317,20 @@
               (click)="menu('modificacion')">Modificacion</button>
           </div>
         </div>
+        <div class="col-xs-2">
+            <div class="row">
+                <button [routerLink]="['/principal']"
+                class="btn bg-cyan  btn-block btn-lg waves-effect"><i class="material-icons">home</i></button>
+            </div>
+          </div>
+        
       </div>
-      <div class="row">
+     <!--<div class="row">
         <div class="col-xs-12"> <button [routerLink]="['/principal']"
             class="btn bg-cyan  btn-block btn-lg waves-effect"><i class="material-icons">home</i></button>
         </div>
       </div>
+      --> 
 
     </div>
 

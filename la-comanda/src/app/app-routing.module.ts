@@ -10,6 +10,7 @@ const routes: Routes = [
   { path: 'alta-mesa', loadChildren: './alta-mesa/alta-mesa.module#AltaMesaPageModule' },
   { path: 'mesa-abm', loadChildren: './mesa-abm/mesa-abm.module#MesaAbmPageModule' },
   { path: 'usuario-abm', loadChildren: './usuario-abm/usuario-abm.module#UsuarioAbmPageModule' },
+  { path: 'principal', loadChildren: './principal/principal.module#PrincipalPageModule' },
  
 ];
 

@@ -8,6 +8,7 @@ import { Vibration } from '@ionic-native/vibration/ngx';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { NodeCompatibleEventEmitter } from 'rxjs/internal/observable/fromEvent';
 import { AuthService } from '../servicios-mecha/auth.service';
+import swal from 'sweetalert';
 
 @Component({
   selector: 'app-usuario-abm',
@@ -36,6 +37,7 @@ export class UsuarioAbmPage implements OnInit {
 
 
 
+
  
 
 
@@ -44,6 +46,11 @@ export class UsuarioAbmPage implements OnInit {
  // age: ['', AgeValidator.isValid]
 
   constructor(public authservice: AuthService, public formBuilder: FormBuilder,public formBuilder2: FormBuilder, public formBuilder3: FormBuilder, private vibration: Vibration, public usuarioServicio: UsuarioService, private camera: Camera, private file: File, private barcodeScanner: BarcodeScanner) {
+    this.cargarform();
+  }
+
+
+  cargarform(){
     this.formAlta = this.formBuilder.group(
       {
         nombre: ['', Validators.compose([Validators.maxLength(30),Validators.minLength(2), Validators.pattern('[a-zA-Z ]*'), Validators.required])],
@@ -90,7 +97,7 @@ export class UsuarioAbmPage implements OnInit {
   }
 
   ngOnInit() {
-
+ 
     this.traerTodasUsuarios();
     /*  this.usuarioServicio.traerUnaUsuario('usuario_3').subscribe(usuario => {
         console.log(usuario.numero);
@@ -112,35 +119,34 @@ export class UsuarioAbmPage implements OnInit {
   altaUsuario() {
     this.mensaje = " ";
     this.estAnim('alta', 'animation-target');
-    if (this.usuarios.some(usuario => usuario.dni == this.usuario.dni)) {
+    if (this.usuarios.some(usuario => usuario.dni == this.usuario.dni) && this.usuario.dni != undefined) {
       this.mensaje = "la usuario ya existe";
+      swal(this.mensaje);
       this.vibration.vibrate(1000);
       console.log('la usuario ya existe');
-    } else if (this.usuario.dni == undefined) {
-      this.mensaje = "Ingrese una la usuario válida";
-      this.vibration.vibrate(1000);
-      console.log('la usuario ya existe');
-    } else {
+    }  else {
       //if si no esta primero traertodos 
       // La foto se tomará del celular. La foto puede ser tomada luego de realizar el alta
       if (this.usuario.perfil != 'supervisor' && this.usuario.perfil != 'dueno' && this.Archivofoto == undefined ) {
         //registro sin fot de empleado
         this.usuarioServicio.altaUsuarioSinFoto(this.usuario);
         this.authservice.SignUp(this.usuario);
+        swal("Registro Existoso!", "Click para continuar", "success");
         this.mensaje = ("usuario cargada");
         this.traerTodasUsuarios();
         this.usuario = new Usuario();
+        this.cargarform();
       }
       else if (this.Archivofoto != undefined) {
         console.info(this.Archivofoto);
         this.usuarioServicio.altaUsuario(this.Archivofoto.fileName, this.Archivofoto.imgBlob, this.usuario);
         this.authservice.SignUp(this.usuario);
-        this.mensaje = ("usuario cargada");
+        swal("Registro Existoso!", "Click para continuar", "success");
         this.traerTodasUsuarios();
         this.usuario = new Usuario();
       }
       else {
-        this.mensaje = ("imagen no cargada");
+        swal("Error", "Foto no cargada", "error");
         this.vibration.vibrate(1000);
       }
     }
@@ -177,7 +183,7 @@ export class UsuarioAbmPage implements OnInit {
       this.file.readAsDataURL(path, filename).then(res => this.mifoto = res);
 
     } catch (error) {
-      console.log("error.message");
+      swal("Error", "Foto no cargada", "error");
       this.vibration.vibrate(1000);
       this.ok = false;
     }
@@ -211,13 +217,16 @@ export class UsuarioAbmPage implements OnInit {
   bajaUsuario() {
     this.mensaje = " ";
     this.estAnim('baja', 'animation-target');
-    if (this.usuarios.some(usuario => usuario.dni == this.usuario.dni)) {
+    if (this.usuarios.some(usuario => usuario.dni == this.usuario.dni) &&  this.usuario.baja == false) {
       this.usuario.baja = true;
       this.usuarioServicio.bajaUsuario(this.usuario);
+      
       this.mensaje = ("Se dió de baja la usuario nro " + this.usuario.dni.toString());
+      swal("Baja exitosa!",  this.mensaje, "success");
       this.traerTodasUsuarios();
+      this.cargarform();
     } else {
-      this.mensaje = ("No se encontró la usuario indicada");
+      swal("Error", "Usuario no encontrado", "error");
       this.vibration.vibrate(1000);
     }
     this.usuario = new Usuario();
@@ -242,11 +251,13 @@ export class UsuarioAbmPage implements OnInit {
         this.usuario.apellido = resultado[2];
         this.usuario.dni = resultado[4];
 
-      }, 1000);
+      }, 3000);
 
 
     }).catch(err => {
+
       this.mensaje = 'Error carga código Qr' + err;
+      swal("Error", this.mensaje, "error");
       this.vibration.vibrate(1000);
     });
   }
@@ -264,12 +275,15 @@ export class UsuarioAbmPage implements OnInit {
   modificarUsuario() {
     this.mensaje = " ";
     this.estAnim('modificar', 'animation-target');
-    if (this.usuarios.some(usuario => usuario.dni == this.usuario.dni)) {
+    if (this.usuarios.some(usuario => usuario.dni == this.usuario.dni) &&  this.usuario.baja == false) {
       this.usuarioServicio.modificarUsuario(this.usuario);
       this.mensaje = ("Se modificó la usuario nro " + this.usuario.dni.toString());
+      swal("Modificación exitosa!",  this.mensaje, "success");
       this.traerTodasUsuarios();
+      this.cargarform();
     } else {
       this.mensaje = ("No se encontró la usuario indicada");
+      swal("Error", this.mensaje, "error");
       this.vibration.vibrate(1000);
 
     }
