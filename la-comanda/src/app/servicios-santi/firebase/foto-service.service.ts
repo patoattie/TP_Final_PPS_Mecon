@@ -49,14 +49,41 @@ export class FotoService {
                   .ref("producto" + '/' + "yo" + '_' + producto.nombre + index)
                   .getDownloadURL().subscribe((URL) => {
                   console.log(URL);
-                  this.fireStore.collection('producto').doc(producto.nombre).collection("imagenes").add({"URL":URL});
+                  producto.URL.push(URL);
+
                   }), 4000);
               }
             });
           },2000);
         });
+      }else{
+        this.ref.push(this.storage
+          .ref("producto" + '/' + "yo" + '_' + producto.nombre + index)
+          .put(file));
+          console.log("llego");
+          setTimeout(() => {
+          
+          this.ref[index].percentageChanges().subscribe((porcentaje) => {
+              this.porcentaje = Math.round(porcentaje);
+              console.log("Porcentaje:" + this.porcentaje)
+          
+              if (this.porcentaje == 100) {
+                this.finalizado = true;
+                this.fireStore.collection('producto').doc(producto.nombre).set(producto);
+                setTimeout(() => this.storage
+                  .ref("producto" + '/' + "yo" + '_' + producto.nombre + index)
+                  .getDownloadURL().subscribe((URL) => {
+                    console.log(URL);
+                    producto.URL.push(URL);
+                  }), 4000);
+              }
+            });
+          },2000);
       }
     });
+
+
+    setTimeout(()=>this.fireStore.collection('producto').doc(producto.nombre).set(producto),8000);
   }
 
 

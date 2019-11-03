@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { ScreenOrientation } from '@ionic-native/screen-orientation/ngx';
 import { NgxDropzoneModule } from 'ngx-dropzone';
 import { Producto } from '../clases/producto';
@@ -14,11 +14,11 @@ import {BarcodeScanner  } from "@ionic-native/barcode-scanner/ngx";
 })
 export class AltaProductosPage implements OnInit {
   
-  nuevoProducto:Producto;
+  @Input() nuevoProducto:Producto;
   
   public archivo: File;
   files: any[] = [];
-
+  modificaroBorrar:boolean;
 
   constructor(private screenOrientation: ScreenOrientation,
               private _camera:Camera,
@@ -33,8 +33,11 @@ export class AltaProductosPage implements OnInit {
     } catch (e) {
       console.warn('No cordova.js');
     }
-    this.nuevoProducto={descripcion:"",nombre:"",tiempo_elaboracion:"",precio:0};
-    
+    if(!this.nuevoProducto){
+    this.nuevoProducto={descripcion:"",nombre:"",tiempo_elaboracion:"",tiempo_elaboracion_real:"",precio:0,URL:[],motivo_baja:""};
+    this.modificaroBorrar=true;
+    }
+
   }
 
   ngOnInit() {
@@ -54,6 +57,9 @@ export class AltaProductosPage implements OnInit {
 		this.files.splice(this.files.indexOf($event), 1);
   }
   alta(){
+    this.nuevoProducto.tiempo_elaboracion_real=this.nuevoProducto.tiempo_elaboracion.substring(11,16);
+    console.log(this.nuevoProducto.tiempo_elaboracion);
+
     this.servicioFirebase.altaProducto(this.nuevoProducto,this.files);
 
   }

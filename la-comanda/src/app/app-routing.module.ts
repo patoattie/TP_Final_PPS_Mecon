@@ -7,7 +7,8 @@ const routes: Routes = [
   { path: 'splash', loadChildren: './splash/splash.module#SplashPageModule' },
   { path: 'alta', loadChildren: './alta/alta.module#AltaPageModule' },
   { path: 'alta-productos', loadChildren: './alta-productos/alta-productos.module#AltaProductosPageModule' },
-  { path: 'alta-mesa', loadChildren: './alta-mesa/alta-mesa.module#AltaMesaPageModule' },
+  { path: 'alta-mesa', loadChildren: './alta-mesa/alta-mesa.module#AltaMesaPageModule' },  { path: 'lista-productos', loadChildren: './lista-productos/lista-productos.module#ListaProductosPageModule' },
+
  
 ];
 

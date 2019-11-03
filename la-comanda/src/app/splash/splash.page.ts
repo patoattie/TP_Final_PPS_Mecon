@@ -55,7 +55,7 @@ export class SplashPage implements OnInit {
     }, 1000);
 
     setTimeout(() => {    //<<<---    using ()=> syntax
-      this.router.navigateByUrl("/alta-productos");   
+      this.router.navigateByUrl("/lista-productos");   
     
   }, 8000);
 

@@ -1,0 +1,17 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>lista-productos</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+<ion-item button *ngFor="let producto of (productosLista | async)">
+  
+  <ion-card class="img-card">
+  <ion-card-header>
+    <ion-card-title>{{producto.nombre}}</ion-card-title>
+    <img src="{{producto.URL[0]}}">
+  </ion-card-header>
+  </ion-card>
+</ion-item>
+</ion-content>
