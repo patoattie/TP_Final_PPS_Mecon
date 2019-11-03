@@ -7,6 +7,7 @@ import { BarcodeScanner } from "@ionic-native/barcode-scanner/ngx";
 import { Vibration } from '@ionic-native/vibration/ngx';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { NodeCompatibleEventEmitter } from 'rxjs/internal/observable/fromEvent';
+import { AuthService } from '../servicios-mecha/auth.service';
 
 @Component({
   selector: 'app-usuario-abm',
@@ -34,6 +35,7 @@ export class UsuarioAbmPage implements OnInit {
   formMod: FormGroup;
 
 
+
  
 
 
@@ -41,14 +43,15 @@ export class UsuarioAbmPage implements OnInit {
   //lastName: ['', Validators.compose([Validators.maxLength(30), Validators.pattern('[a-zA-Z ]*'), Validators.required])],
  // age: ['', AgeValidator.isValid]
 
-  constructor(public formBuilder: FormBuilder,public formBuilder2: FormBuilder, public formBuilder3: FormBuilder, private vibration: Vibration, public usuarioServicio: UsuarioService, private camera: Camera, private file: File, private barcodeScanner: BarcodeScanner) {
+  constructor(public authservice: AuthService, public formBuilder: FormBuilder,public formBuilder2: FormBuilder, public formBuilder3: FormBuilder, private vibration: Vibration, public usuarioServicio: UsuarioService, private camera: Camera, private file: File, private barcodeScanner: BarcodeScanner) {
     this.formAlta = this.formBuilder.group(
       {
         nombre: ['', Validators.compose([Validators.maxLength(30),Validators.minLength(2), Validators.pattern('[a-zA-Z ]*'), Validators.required])],
         apellido: ['', Validators.compose([Validators.maxLength(30),Validators.minLength(2), Validators.pattern('[a-zA-Z ]*'), Validators.required])],
         dni:  ['', Validators.compose([Validators.maxLength(10),Validators.minLength(7), Validators.pattern('[0-9]*'), Validators.required])],
         perfil: ['', Validators.compose([Validators.required])],
-       
+        email: ['', Validators.compose([ Validators.email,Validators.required])],
+        clave:['', Validators.compose([Validators.required, Validators.minLength(6)])]     
       });
     this.formBaja = this.formBuilder2.group(
       {
@@ -123,6 +126,7 @@ export class UsuarioAbmPage implements OnInit {
       if (this.usuario.perfil != 'supervisor' && this.usuario.perfil != 'dueno' && this.Archivofoto == undefined ) {
         //registro sin fot de empleado
         this.usuarioServicio.altaUsuarioSinFoto(this.usuario);
+        this.authservice.SignUp(this.usuario);
         this.mensaje = ("usuario cargada");
         this.traerTodasUsuarios();
         this.usuario = new Usuario();
@@ -130,6 +134,7 @@ export class UsuarioAbmPage implements OnInit {
       else if (this.Archivofoto != undefined) {
         console.info(this.Archivofoto);
         this.usuarioServicio.altaUsuario(this.Archivofoto.fileName, this.Archivofoto.imgBlob, this.usuario);
+        this.authservice.SignUp(this.usuario);
         this.mensaje = ("usuario cargada");
         this.traerTodasUsuarios();
         this.usuario = new Usuario();

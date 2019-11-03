@@ -8,6 +8,8 @@ export class Usuario {
     motivo:string;
     id:any;
     spin:boolean;
+    email:any;
+    clave:string;
 }
 
 

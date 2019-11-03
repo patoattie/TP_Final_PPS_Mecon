@@ -133,6 +133,27 @@
           </div>
 
 
+          <div class="input-group">
+              <span class="input-group-addon">
+                  <i class="material-icons" style="font-size:25px; vertical-align: middle;">email</i> Correo:
+              </span>
+              <div class="form-line">
+                  <input type="email" id="email" formControlName="email"  [(ngModel)]="usuario.email" class="form-control" name="email"
+                      required autofocus>
+              </div>
+              <label id="email-error" class="error" for="email"><span>{{ getError(formAlta, 'email')}}</span></label>
+
+          </div>
+          <div class="input-group">
+              <span class="input-group-addon">
+                  <i class="material-icons" style="font-size:25px; vertical-align: middle;">lock</i> Clave:
+              </span>
+              <div class="form-line">
+                  <input type="password" id="clave"  formControlName="clave"  class="form-control"  [(ngModel)]="usuario.clave" name="clave"  required>
+              </div>
+              <label id="clave-error" class="clave" for="clave"><span>{{ getError(formAlta, 'clave')}}</span></label>
+          </div>
+
           <div class="input-group mt-4">
             <button id="foto" name="foto" (click)="tomarFoto()" class="form-group">
               <span *ngIf="mifoto == undefined" class="input-group-addon">
