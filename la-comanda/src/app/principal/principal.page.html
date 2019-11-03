@@ -1,9 +1,123 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-title>principal</ion-title>
-  </ion-toolbar>
-</ion-header>
-
-<ion-content>
-
-</ion-content>
+<body class="signup-page">
+    <div class="signup-box">
+      <div class="logo">
+        <a href="javascript:void(0);" style="padding-bottom: 10px;"><img src="../../assets/logo_tipo.svg"></a>
+        <small>Administración de comandas - PPS2019</small>
+      </div>
+      <div class="card">
+        <div class="body">
+  
+          <div *ngIf="(perfil == 'supervisor' || perfil == 'dueno')">
+            <!-- perfil supervisor
+          botones:         
+            alta empleado
+            encuesta supervisor
+            estadisticas
+          hacer reservas
+        confirmar delivey-->
+  
+            <button class="col p-0 btn bg-teal waves-effect">ABM dueño/supervisor</button>
+            <button class="col p-0 btn bg-teal waves-effect">ABM empleado</button>
+            <button class="col p-0 btn bg-teal waves-effect">Encuesta</button>
+            <button class="col p-0 btn bg-teal waves-effect">Estadísticas</button>
+            <button class="col p-0btn bg-teal waves-effect ">Reservas</button>
+            <button class="col p-0btn bg-teal waves-effect ">Delivery</button>
+  
+          </div>
+  
+  
+          <div *ngIf="perfil == 'cliente'">
+  
+  
+            <!-- perfil cliente registrado
+          encuesta cleinte
+          estadisticas
+          delivery
+          juegos
+  
+          -->
+  
+  
+            <button class="col p-0">Pedidos</button>
+            <button class="col p-0">Encuesta</button>
+            <button class="col p-0">Estadísticas</button>
+            <button class="col p-0" *ngIf="registrado">Reservas</button>
+            <button class="col p-0">Juegos</button>
+  
+          </div>
+  
+  
+  
+          <div *ngIf="perfil == 'mozo'">
+  
+  
+            <!-- perfil mozo-
+          encuesta empleado
+          estadisticas
+          boton pedidos
+        -->
+  
+  
+            <button class="col p-0">Pedidos</button>
+            <button class="col p-0">Encuesta</button>
+            <button class="col p-0">Estadísticas</button>
+  
+  
+          </div>
+  
+  
+  
+          <div *ngIf="perfil == 'metre'">
+  
+  
+  
+            <!-- perfil metre
+          botones
+          alta cliente
+          encuesta empleado
+          estadisticas
+          
+          -->
+  
+  
+            <button class="col p-0">Alta cliente</button>
+            <button class="col p-0">Encuesta</button>
+            <button class="col p-0">Estadísticas</button>
+  
+  
+          </div>
+  
+  
+  
+          <div *ngIf="(perfil == 'cocinero' || perfil == 'bartender')">
+  
+            <!-- perfil cocinero bartender
+            alta producto
+            encuesta empleado
+            estadisticas
+            tomar pedidos
+            modificar pedidos a listo-->
+  
+  
+            <button class="col p-0">Alta producto</button>
+            <button class="col p-0">Tomar pedidos</button>
+            <button class="col p-0">modificar pedido a listo</button>
+            <button class="col p-0">Encuesta</button>
+            <button class="col p-0">Estadísticas</button>
+  
+  
+          </div>
+  
+  
+  
+  
+  
+  
+  
+  
+        </div>
+      </div>
+    </div>
+  
+  
+  </body>

@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { AuthService } from '../servicios-mecha/auth.service';
+import { UsuarioService } from '../servicios-mecha/usuario.service';
 
 @Component({
   selector: 'app-principal',
@@ -6,10 +8,13 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./principal.page.scss'],
 })
 export class PrincipalPage implements OnInit {
-
-  constructor() { }
+  perfil:string = '';
+  registrado:boolean;
+  constructor(public servicioAuth: AuthService, public usuarioservicio: UsuarioService) { }
 
   ngOnInit() {
+    console.log(this.servicioAuth.usuarioLoguiado.perfil);
+    this.perfil= this.servicioAuth.usuarioLoguiado.perfil
   }
 
 }

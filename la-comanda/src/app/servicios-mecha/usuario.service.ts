@@ -105,6 +105,7 @@ export class UsuarioService {
       nombre: usuario.nombre,
       apellido: usuario.apellido,
       perfil: usuario.perfil,
+      email: usuario.email,
       baja: false
     }
     var res = this.fireStore.collection('usuarios').doc('usuario_' + usuario.dni).set(datos).then(() => {
@@ -129,6 +130,12 @@ export class UsuarioService {
       .pipe(map(actions => actions.map(this.documentToDomainObject)));
     return usuarios;
 
+  }
+
+  buscarUsuarioPorEmail(email:string) {   
+    let usuarios = this.fireStore.collection('usuarios', ref => ref.where('email', '==', email)).snapshotChanges()
+      .pipe(map(actions => actions.map(this.documentToDomainObject)));
+    return usuarios;
   }
 
   documentToDomainObject = _ => {

@@ -104,6 +104,8 @@ export class UsuarioAbmPage implements OnInit {
      });
      */
     // this.traerUsuario(3);
+
+   
   }
 
 
@@ -131,11 +133,12 @@ export class UsuarioAbmPage implements OnInit {
         //registro sin fot de empleado
         this.usuarioServicio.altaUsuarioSinFoto(this.usuario);
         this.authservice.SignUp(this.usuario);
-        swal("Registro Existoso!", "Click para continuar", "success");
-        this.mensaje = ("usuario cargada");
         this.traerTodasUsuarios();
         this.usuario = new Usuario();
         this.cargarform();
+        swal("Registro Existoso!", "Click para continuar", "success");
+        this.mensaje = ("usuario cargada");
+    
       }
       else if (this.Archivofoto != undefined) {
         console.info(this.Archivofoto);

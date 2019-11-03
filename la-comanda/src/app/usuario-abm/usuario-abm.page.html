@@ -63,6 +63,15 @@
               </span>
             </button>
 
+            <div class="input-group" style="margin-bottom: 0; padding-bottom: 0">
+                <button id="foto" name="foto" (click)="tomarFoto()" class="form-group">
+                  <span *ngIf="mifoto == undefined" class="input-group-addon">
+                    <i class="material-icons" style="font-size:25px; vertical-align: middle;">photo_camera</i>Sacar una Foto
+                  </span>
+                  <img *ngIf="mifoto != undefined" [src]="mifoto" style="height: 30vh;">
+                </button>
+              </div>
+
         <form [formGroup]="formAlta" id="formAlta" (submit)="altaUsuario()">
           <div class="font-bold col-cyan msg">
             <h2>Alta de Usuario</h2>
@@ -152,14 +161,7 @@
               <label id="clave-error" class="clave" for="clave"><span>{{ getError(formAlta, 'clave')}}</span></label>
           </div>
 
-          <div class="input-group" style="margin-bottom: 0; padding-bottom: 0">
-            <button id="foto" name="foto" (click)="tomarFoto()" class="form-group">
-              <span *ngIf="mifoto == undefined" class="input-group-addon">
-                <i class="material-icons" style="font-size:25px; vertical-align: middle;">photo_camera</i>Sacar una Foto
-              </span>
-              <img *ngIf="mifoto != undefined" [src]="mifoto" style="height: 30vh;">
-            </button>
-          </div>
+       
 
 
           <button class="btn btn-block btn-lg bg-green waves-effect" id="alta" type="submit"

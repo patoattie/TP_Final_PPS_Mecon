@@ -1,6 +1,6 @@
 <body class="login-page">
     <!-- Page Loader -->
-    <div class="page-loader-wrapper" *ngIf="spinner">
+    <div class="page-loader-wrapper" *ngIf="authservicio.spinner">
         <div class="loader">
             <svg viewBox="0 0 230 284" width="100" height="123">
 
@@ -48,47 +48,57 @@
         </div>
     </div>
     <!-- #END# Page Loader -->
-    <div class="login-box">
-        <div class="logo">
-            <a href="javascript:void(0);" style="padding-bottom: 10px;"><img src="../../assets/logo_tipo.svg"></a>
-            <small>Administración de comandas - PPS2019</small>
-        </div>
-        <div class="card">
-            <div class="body">
-                <form id="sign_in" method="POST">
-                    <div class="msg">Ingrese los datos para iniciar la aplicación</div>
-                    <div class="input-group">
-                        <span class="input-group-addon">
-                            <i class="material-icons">person</i>
-                        </span>
-                        <div class="form-line">
-                            <input type="text" class="form-control" name="username" placeholder="Nombre usuario"
-                                required autofocus>
-                        </div>
-                    </div>
-                    <div class="input-group">
-                        <span class="input-group-addon">
-                            <i class="material-icons">lock</i>
-                        </span>
-                        <div class="form-line">
-                            <input type="password" class="form-control" name="password" placeholder="Clave" required>
-                        </div>
-                    </div>
-                    <div class="row">
 
-                        <div class="col-xs-4">
-                            <button class="btn btn-block bg-pink waves-effect" type="submit">Ingresar</button>
-                        </div>
+    <div class="card">
+        <div class="body">
+            <form [formGroup]="formulario" id="formulario" (submit)="login()">
+                <div class="msg">
+                    Ingrese los datos para iniciar la aplicación
+
+                </div>
+                <ion-item color="danger" *ngIf="getError()">
+                    <ion-label>E-Mail inexistente o Clave incorrecta</ion-label>
+                </ion-item>
+                <div class="input-group">
+                    <span class="input-group-addon">
+                        <i class="material-icons">person</i>
+                    </span>
+                    <div class="form-line">
+                        <input formControlName="correo" id="correo" type="email" class="form-control" name="correo"
+                            placeholder="Nombre usuario" required autofocus>
                     </div>
-                    <div class="row m-t-15 m-b--20">
-                        <div class="col-xs-6 align-right">
-                            <a href="#">¿Olvidó loa clave?</a>
-                        </div>
+                </div>
+
+                <div class="input-group">
+                    <span class="input-group-addon">
+                        <i class="material-icons">lock</i>
+                    </span>
+                    <div class="form-line">
+                        <input formControlName="clave" id="clave" type="password" class="form-control" name="clave"
+                            placeholder="Clave" required>
                     </div>
-                </form>
-            </div>
+                </div>
+                <div class="row">
+
+                    <div class="col-xs-4">
+                        <button class="btn btn-block bg-pink waves-effect"  [disabled]="!formulario.valid" type="submit">Ingresar</button>
+
+                        <ion-spinner name="lines-small" slot="end" *ngIf="getEnEspera()"></ion-spinner>
+
+                    </div>
+                </div>
+                <p *ngIf="getErrorDatos()" style="color: #ea6153;">Por favor verificá que hayas ingresado un E-Mail
+                    válido y una Clave.
+                </p>
+                <div class="row m-t-15 m-b--20">
+                    <div class="col-xs-6 align-right">
+                        <a href="#">¿Olvidó la clave?</a>
+                    </div>
+                </div>
+            </form>
         </div>
     </div>
+
 
     <div example-container>
 
@@ -100,26 +110,23 @@
 
 
             <ion-fab-list side="top">
-                <ion-button color="#0d6f92" style="width: 200px" [routerLink]="['/usuario-abm']">
-                    usuario-abm (borrarlo luego)
-                </ion-button>
-                <ion-button color="#0d6f92" style="width: 200px" [routerLink]="['/mesa-abm']">
-                    abm Mesa (borrarlo luego)
-                </ion-button>
                 <ion-button color="#0d6f92" style="width: 200px" [routerLink]="['/alta-productos']">
                     alta-productos
+                </ion-button>
+                <ion-button color="#0d6f92" style="width: 200px" [routerLink]="['/usuario-abm']">
+                    abm usuarios
                 </ion-button>
                 <ion-button color="#0d6f92" style="width: 200px"
                     (click)="usuario.nombre='supervisor@nose.com';usuario.clave='123456'">
                     Supervisor
                 </ion-button>
                 <ion-button color="#0d6f92" style="width: 200px"
-                    (click)="usuario.nombre='empleado@nose.com';usuario.clave='123456'">
+                    (click)="usuario.nombre='mozo@nose.com';usuario.clave='123456'">
                     Empleado
                 </ion-button>
                 <ion-button color="#0d6f92" style="width: 200px"
-                    (click)="usuario.nombre='cliente@nose.com';usuario.clave='123456'">
-                    Cliente
+                    (click)="usuario.nombre='bartender@nose.com';usuario.clave='123456'">
+                    bartender
                 </ion-button>
                 <ion-button color="#0d6f92" style="width: 200px"
                     (click)="usuario.nombre='dueno@nose.com';usuario.clave='123456'">
@@ -131,3 +138,4 @@
 
 
     </div>
+</body>
