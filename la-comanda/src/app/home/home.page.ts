@@ -54,6 +54,31 @@ export class HomePage {
 
   }
 
+  public getError(form:any,controlName: string): string {
+    let error:any;
+    let mse="";
+    const control = form.get(controlName);
+    if (control.touched && control.errors != null) {
+      console.info(JSON.stringify(control.errors));
+      error = JSON.parse(JSON.stringify(control.errors));
+      if(error.required){
+        mse="Campo requerido.";
+      }
+      if(error.minlength != undefined){
+        mse ="Error en logintud mínima requerida.";
+      }
+      if(error.maxlength != undefined){
+        mse ="Error en la longitud máxima.";
+      }
+
+      if(error.pattern != undefined){
+        mse ="Error en el tipo de dato.";
+      }
+    }
+    return mse;
+  }
+
+
   login() {
 
      if (this.formulario.valid) {
@@ -93,11 +118,7 @@ export class HomePage {
     return this.ok;
   }
 
-  public getError(): boolean {
-    return this.error;
-  }
-
-  public getErrorDatos(): boolean {
+   public getErrorDatos(): boolean {
     return this.errorDatos;
   }
 
