@@ -13,8 +13,9 @@ export class PrincipalPage implements OnInit {
   constructor(public servicioAuth: AuthService, public usuarioservicio: UsuarioService) { }
 
   ngOnInit() {
-    console.log(this.servicioAuth.usuarioLoguiado.perfil);
-    this.perfil= this.servicioAuth.usuarioLoguiado.perfil
+    console.log("sin perfil", this.servicioAuth.usuarioLoguiado.perfil);
+    this.perfil= this.servicioAuth.usuarioLoguiado.perfil;
+   
   }
 
 }

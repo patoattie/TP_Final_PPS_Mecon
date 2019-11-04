@@ -1,123 +1,194 @@
 <body class="signup-page">
-    <div class="signup-box">
-      <div class="logo">
-        <a href="javascript:void(0);" style="padding-bottom: 10px;"><img src="../../assets/logo_tipo.svg"></a>
-        <small>Administración de comandas - PPS2019</small>
-      </div>
-      <div class="card">
-        <div class="body">
-  
-          <div *ngIf="(perfil == 'supervisor' || perfil == 'dueno')">
-            <!-- perfil supervisor
+  <div class="signup-box">
+    <div class="logo">
+      <a href="javascript:void(0);" style="padding-bottom: 10px;"><img src="../../assets/logo_tipo.svg"></a>
+      <small>Administración de comandas - PPS2019</small>
+    </div>
+    <div class="card">
+      <div class="body">
+
+        <div class="row" *ngIf="(perfil == 'supervisor' || perfil == 'dueno')">
+          <div class="col-xs-6">
+            <button class="btn bg-green  btn-block btn-lg waves-effect" [routerLink]="['/usuario-abm']">ABM
+              Usuarios</button>
+          </div>
+          <div class="col-xs-6">
+            <button class="btn bg-green  btn-block btn-lg waves-effect" [routerLink]="['/mesa-abm']">ABM
+              Mesas</button>
+          </div>
+          <div class="col-xs-6">
+            <button class="btn bg-red btn-block btn-lg  waves-effect">Encuesta</button>
+          </div>
+        </div>
+
+        <div class="row" *ngIf="(perfil == 'supervisor' || perfil == 'dueno')">
+          <div class="col-xs-6">
+            <button class="btn bg-orange btn-block btn-lg   waves-effect">Estadísticas</button>
+          </div>
+
+        </div>
+
+
+
+
+        <!--<div class="row">
+                <div class="col-xs-12"> <button [routerLink]="['/principal']"
+                    class="btn bg-cyan  btn-block btn-lg waves-effect"><i class="material-icons">home</i></button>
+                </div>
+              </div>
+              -->
+
+
+
+
+        <!-- perfil supervisor
           botones:         
             alta empleado
             encuesta supervisor
             estadisticas
           hacer reservas
-        confirmar delivey-->
+        confirmar delivey
   
-            <button class="col p-0 btn bg-teal waves-effect">ABM dueño/supervisor</button>
-            <button class="col p-0 btn bg-teal waves-effect">ABM empleado</button>
+            <button class="col p-0 btn bg-teal waves-effect ">ABM dueño/supervisor/empleados</button>
             <button class="col p-0 btn bg-teal waves-effect">Encuesta</button>
             <button class="col p-0 btn bg-teal waves-effect">Estadísticas</button>
             <button class="col p-0btn bg-teal waves-effect ">Reservas</button>
             <button class="col p-0btn bg-teal waves-effect ">Delivery</button>
-  
+            -->
+
+      </div>
+
+
+
+
+      <div class="body">
+
+        <div class="row" *ngIf="(perfil == 'cliente' || perfil == 'anonimo')">
+          <div class="col-xs-6">
+            <button class="btn bg-green  btn-block btn-lg waves-effect" [routerLink]="['/usuario-abm']">Pedidos</button>
           </div>
-  
-  
-          <div *ngIf="(perfil == 'cliente' || perfil == 'anonimo')">
-  
-  
-            <!-- perfil cliente registrado
+          <div class="col-xs-6">
+            <button class="btn bg-green  btn-block btn-lg waves-effect" [routerLink]="['/mesa-abm']">ABM
+              Mesas</button>
+          </div>
+          <div class="col-xs-6">
+            <button class="btn bg-red btn-block btn-lg  waves-effect">Encuesta</button>
+          </div>
+        </div>
+
+
+        <div class="row" *ngIf="(perfil == 'cliente' || perfil == 'anonimo')">
+          <div class="col-xs-6">
+            <button class="btn bg-red btn-block btn-lg  waves-effect" *ngIf="registrado">Reservas</button>
+          </div>
+        </div>
+
+
+        <div class="row" *ngIf="(perfil == 'supervisor' || perfil == 'dueno')">
+          <div class="col-xs-6">
+            <button class="btn bg-orange btn-block btn-lg   waves-effect">Estadísticas</button>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+      <!-- perfil cliente registrado
           encuesta cleinte
           estadisticas
           delivery
           juegos
   
           -->
-  
-  
-            <button class="col p-0">Pedidos</button>
-            <button class="col p-0">Encuesta</button>
-            <button class="col p-0">Estadísticas</button>
-            <button class="col p-0" *ngIf="registrado">Reservas</button>
-            <button class="col p-0">Juegos</button>
-  
-          </div>
-  
-  
-  
-          <div *ngIf="perfil == 'mozo'">
-  
-  
-            <!-- perfil mozo-
+
+
+  <button class="col p-0">Pedidos</button>
+  <button class="col p-0">Encuesta</button>
+  <button class="col p-0">Estadísticas</button>
+  <button class="col p-0" *ngIf="registrado">Reservas</button>
+  <button class="col p-0">Juegos</button>
+
+
+  </div>
+
+
+
+
+
+
+  <div *ngIf="perfil == 'mozo'">
+
+
+    <!-- perfil mozo-
           encuesta empleado
           estadisticas
           boton pedidos
         -->
-  
-  
-            <button class="col p-0">Pedidos</button>
-            <button class="col p-0">Encuesta</button>
-            <button class="col p-0">Estadísticas</button>
-  
-  
-          </div>
-  
-  
-  
-          <div *ngIf="perfil == 'metre'">
-  
-  
-  
-            <!-- perfil metre
+
+
+    <button class="col p-0">Pedidos</button>
+    <button class="col p-0">Encuesta</button>
+    <button class="col p-0">Estadísticas</button>
+
+
+  </div>
+
+
+
+  <div *ngIf="perfil == 'metre'">
+
+
+
+    <!-- perfil metre
           botones
           alta cliente
           encuesta empleado
           estadisticas
           
           -->
-  
-  
-            <button class="col p-0">Alta cliente</button>
-            <button class="col p-0">Encuesta</button>
-            <button class="col p-0">Estadísticas</button>
-  
-  
-          </div>
-  
-  
-  
-          <div *ngIf="(perfil == 'cocinero' || perfil == 'bartender')">
-  
-            <!-- perfil cocinero bartender
+
+
+    <button class="col p-0">Alta cliente</button>
+    <button class="col p-0">Encuesta</button>
+    <button class="col p-0">Estadísticas</button>
+
+
+  </div>
+
+
+
+  <div *ngIf="(perfil == 'cocinero' || perfil == 'bartender')">
+
+    <!-- perfil cocinero bartender
             alta producto
             encuesta empleado
             estadisticas
             tomar pedidos
             modificar pedidos a listo-->
-  
-  
-            <button class="col p-0">Alta producto</button>
-            <button class="col p-0">Tomar pedidos</button>
-            <button class="col p-0">modificar pedido a listo</button>
-            <button class="col p-0">Encuesta</button>
-            <button class="col p-0">Estadísticas</button>
-  
-  
-          </div>
-  
-  
-  
-  
-  
-  
-  
-  
-        </div>
-      </div>
+
+    <div class="col-xs-6">
+      <button class="btn bg-orange btn-block btn-lg   waves-effect" [routerLink]="['/alta-productos']">ABM
+        producto</button>
     </div>
-  
-  
-  </body>
+
+    <button class="col p-0">Tomar pedidos</button>
+    <button class="col p-0">modificar pedido a listo</button>
+    <button class="col p-0">Encuesta</button>
+    <button class="col p-0">Estadísticas</button>
+
+
+  </div>
+
+
+  <div class="row" style="position: absolute; bottom: 0; width: 100%;z-index: 1200;">
+    <div class="col-xs-3">
+      <button [routerLink]="['/principal']" class="btn bg-cyan  btn-block btn-lg waves-effect"><i
+          class="material-icons">home</i></button>
+    </div>
+    <div class="col-xs-3">
+      <button (click)="servicioAuth.SignOut" class="btn bg-cyan  btn-block btn-lg waves-effect"><i
+          class="material-icons">cancel</i>salir</button>
+    </div>
+  </div>
+
+</body>

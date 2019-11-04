@@ -93,16 +93,26 @@ export class HomePage {
           this.usuarioServicio.buscarUsuarioPorEmail(this.usuario.email).subscribe(usuarios => {
             this.authservicio.usuarioLoguiado = usuarios[0];
             this.spinner = false;
-            console.log(this.authservicio.usuarioLoguiado.perfil);
-            if (this.authservicio.usuarioLoguiado == undefined) {
+            //console.log(this.authservicio.usuarioLoguiado.perfil);
+            if (this.authservicio.usuarioLoguiado.perfil == undefined) {
               swal("Error", "Usuario no encontrado", "error");
             } else {
               this.router.navigate(['/principal']);
             }
 
-          })
+          }, (err) => {
+            swal("Error", "Usuario no encontrado", "error");
+            this.spinner = false;
+            console.log("usuario ni encontrado en base", err);
+           
+           });
         }, 1500);
-      });
+      }, (err) => {
+        swal("Error", "Usuario no encontrado en Auth", "error");
+        this.spinner = false;
+        console.log("usuario ni encontrado", err);
+       
+       });
 
      }
 
