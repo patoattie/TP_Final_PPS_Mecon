@@ -1,0 +1,341 @@
+<body class="signup-page">
+  <div class="page-loader-wrapper" *ngIf="usuarioServicio.spinner">
+    <div class="loader">
+      <svg viewBox="0 0 230 284" width="100" height="123">
+
+        <circle y="100" cx="30" cy="150" r="25" style="stroke: none; fill: #0000ff;">
+          <animate attributeName="cx" attributeType="XML" from="30" to="200" begin="0s" dur="1s" fill="remove"
+            repeatCount="indefinite" />
+
+        </circle>
+        <circle y="100" cx="200" cy="150" r="25" style="stroke: none; fill: #0000ff;">
+          <animate attributeName="cx" attributeType="XML" from="200" to="30" begin="0s" dur="1s" fill="remove"
+            repeatCount="indefinite" />
+
+        </circle>
+        <path id="Layer" class="shp1"
+          d="M84.32 167.02L83.25 174.56C77.02 173.67 72.67 167.88 73.56 161.64L83.23 93.83L90.77 94.9L81.1 162.72C80.8 164.79 82.25 166.73 84.32 167.02L84.32 167.02Z" />
+        <path id="Layer copy" class="shp2"
+          d="M139.61 159.23L140.88 166.56C148.23 165.69 153.37 160.06 152.31 153.99L140.9 88L132 89.05L143.42 155.03C143.77 157.06 142.06 158.94 139.61 159.23L139.61 159.23Z" />
+        <use id="Layer 1" href="#img1" x="-645" y="-608" />
+        <path id="Layer" class="shp3"
+          d="M117.98 83.72L106.56 106.81L114.17 129.9L134.47 129.9L129.39 83.72L117.98 83.72Z" />
+        <path id="Layer" class="shp1" d="M98.94 83.72L93.88 129.9L114.17 129.9L114.17 88.8L110.37 83.72L98.94 83.72Z" />
+        <path id="Layer" class="shp4" d="M110.37 83.72L117.98 83.72L117.98 134.47L110.37 134.47L110.37 83.72Z" />
+        <path id="piernaIzquierda" class="shp5"
+          d="M95.14 144.62L95.14 244.38L82.52 248.58C80.53 249.25 79.45 251.4 80.12 253.4C80.78 255.39 82.94 256.47 84.93 255.81L100.15 250.73C101.7 250.21 102.75 248.76 102.75 247.12L102.75 144.62L95.14 144.62Z" />
+        <path id="piernaDerecha" class="shp4"
+          d="M133.2 144.62L133.2 244.38L145.82 248.58C147.81 249.25 148.89 251.4 148.23 253.4C147.56 255.39 145.4 256.47 143.41 255.81L128.19 250.73C126.63 250.21 125.59 248.76 125.59 247.12L125.59 144.62L133.2 144.62Z" />
+        <path id="Layer" class="shp6"
+          d="M131.69 15.58C133.18 12.71 132.73 9.1 130.31 6.69C127.91 4.29 124.29 3.83 121.43 5.32C120.46 2.23 117.57 0 114.17 0C110.77 0 107.89 2.23 106.92 5.32C104.05 3.83 100.43 4.28 98.03 6.69C95.62 9.1 95.16 12.71 96.65 15.58C93.57 16.55 91.33 19.43 91.33 22.84L91.33 45.67L137 45.67C137 45.67 137 27.04 137 22.84C137 19.43 134.77 16.55 131.69 15.58Z" />
+        <path id="Layer" class="shp7"
+          d="M114.17 22.84L114.17 68.5C126.78 68.5 137 58.28 137 45.67C137 33.06 126.78 22.84 114.17 22.84Z" />
+        <path id="Layer" class="shp8"
+          d="M121.78 45.67C121.78 33.06 118.38 22.84 114.17 22.84C101.56 22.84 91.33 33.06 91.33 45.67C91.33 58.28 101.56 68.5 114.17 68.5C118.38 68.5 121.78 58.28 121.78 45.67Z" />
+        <path id="Layer" class="shp3" d="M137 144.62L106.56 129.39L121.78 190.28L137 190.28L137 144.62Z" />
+        <path id="Layer" class="shp1" d="M91.33 144.62L91.33 190.28L121.78 190.28L121.78 129.39L91.33 144.62Z" />
+        <path id="Layer" class="shp9"
+          d="M134.47 83.72L129.39 83.72C129.39 101.08 123.27 116.22 114.17 124.32L104.02 124.32L114.17 144.62L137 144.62L137 121.78C141.08 118.72 143.91 114.1 144.62 108.81L144.62 93.88C144.62 88.27 140.07 83.72 134.47 83.72L134.47 83.72Z" />
+        <path id="Layer" class="shp10"
+          d="M98.94 83.72L93.88 83.72C88.27 83.72 83.72 88.27 83.72 93.88L83.72 108.81C84.43 114.1 87.26 118.72 91.33 121.78L91.33 144.62L114.17 144.62L114.17 124.32C105.07 116.22 98.94 101.08 98.94 83.72L98.94 83.72Z" />
+      </svg>
+
+
+    </div>
+  </div>
+
+
+  <div class="signup-box">
+    <div class="logo">
+      <a href="javascript:void(0);" style="padding-bottom: 10px;"><img src="../../assets/logo_tipo.svg"></a>
+      <small>Administración de comandas - PPS2019</small>
+    </div>
+    <div class="card">
+
+
+      <!--alta-->
+      <div class="body" *ngIf="alta" style="overflow-y:scroll; height: 81vh;">
+
+          <button (click)="scanQrDNI()" class="form-group mb-3">
+              <span class="input-group-addon">
+                <i class="material-icons" style="font-size:25px; vertical-align: middle;">settings_overscan</i>
+                Scanear DNI
+              </span>
+            </button>
+
+            <div class="input-group" style="margin-bottom: 0; padding-bottom: 0">
+                <button id="foto" name="foto" (click)="tomarFoto()" class="form-group">
+                  <span *ngIf="mifoto == undefined" class="input-group-addon">
+                    <i class="material-icons" style="font-size:25px; vertical-align: middle;">photo_camera</i>Sacar una Foto
+                  </span>
+                  <img *ngIf="mifoto != undefined" [src]="mifoto" style="height: 30vh;">
+                </button>
+              </div>
+
+        <form [formGroup]="formAlta" id="formAlta" (submit)="altaUsuario()">
+          <div class="font-bold col-cyan msg">
+            <h2>Alta de Usuario</h2>
+          </div>
+
+
+
+<!--perfil-->
+          <div class="input-group mb-0" style="margin-bottom: 0; padding-bottom: 0">
+            <div class="row">
+            <div class="col-xs-3 m-0 p-0">
+              <span class="input-group-addon">
+              <i class="material-icons" style="font-size:25px; vertical-align: middle;">person</i>Perfil:</span>
+            </div>
+            <div class="col-xs-9">           
+              <select formControlName="perfil" id="perfil" [(ngModel)]="usuario.perfil" name="perfil"
+                class="form-control show-tick" style="border: #00c3ff solid 1px; margin-bottom: 0; padding-bottom: 0" tabindex="-98">
+                <option name="perfilMod" value="supervisor">Supervisor</option>
+                <option name="perfilMod" value="dueno">Dueño</option>
+                <option name="perfilMod" value="mozo">Mozo</option>
+                <option name="perfilMod" value="metre">Metre</option>
+                <option name="perfilMod" value="bartender">Bartender</option>
+                <option name="perfilMod" value="cocinero">Cocinero</option>
+              </select>
+          </div>
+          </div>
+            <label id="perfil-error" class="error" for="perfil"><span>{{ getError(formAlta, 'perfil')}}</span></label>
+          </div>
+          <!-- fin perfil-->
+
+
+          <div class="input-group">
+            <span class="input-group-addon">
+              <i class="material-icons" style="font-size:25px; vertical-align: middle;">crop_square</i>
+              Número DNI:
+            </span>
+            <div class="form-line">
+              <input type="text" class="form-control" formControlName="dni" name="dni" id="dni"
+                [(ngModel)]="usuario.dni" required autofocus>
+            </div>
+            <label id="dni-error" class="error" for="dni"><span>{{ getError(formAlta, 'dni')}}</span></label>
+          </div>
+
+          <div class="input-group">
+            <span class="input-group-addon">
+              <i class="material-icons" style="font-size:25px; vertical-align: middle;">person</i> Nombre:
+            </span>
+            <div class="form-line">
+              <input type="text" class="form-control" formControlName="nombre" name="nombre" id="nombre"
+                [(ngModel)]="usuario.nombre" name="nombre" required>
+            </div>
+            <label id="nombre-error" class="error" for="nombre"><span>{{ getError(formAlta, 'nombre')}}</span></label>
+          </div>
+
+          <div class="input-group">
+            <span class="input-group-addon">
+              <i class="material-icons" style="font-size:25px; vertical-align: middle;">person</i>Apellido:</span>
+            <div class="form-line">
+              <input type="text" class="form-control" formControlName="apellido" name="apellido" id="apellido"
+                [(ngModel)]="usuario.apellido" name="apellido" required>
+            </div>
+            <label id="apellido-error" class="error" for="apellido"><span>{{ getError(formAlta, 'apellido')}}</span></label>
+
+          </div>
+
+    
+
+
+          <div class="input-group">
+              <span class="input-group-addon">
+                  <i class="material-icons" style="font-size:25px; vertical-align: middle;">email</i> Correo:
+              </span>
+              <div class="form-line">
+                  <input type="email" id="email" formControlName="email"  [(ngModel)]="usuario.email" class="form-control" name="email"
+                      required autofocus>
+              </div>
+              <label id="email-error" class="error" for="email"><span>{{ getError(formAlta, 'email')}}</span></label>
+
+          </div>
+          <div class="input-group">
+              <span class="input-group-addon">
+                  <i class="material-icons" style="font-size:25px; vertical-align: middle;">lock</i> Clave:
+              </span>
+              <div class="form-line">
+                  <input type="password" id="clave"  formControlName="clave"  class="form-control"  [(ngModel)]="usuario.clave" name="clave"  required>
+              </div>
+              <label id="clave-error" class="clave" for="clave"><span>{{ getError(formAlta, 'clave')}}</span></label>
+          </div>
+
+       
+
+
+          <button class="btn btn-block btn-lg bg-green waves-effect" id="alta" type="submit"
+            [disabled]="!formAlta.valid">Alta</button>
+
+
+
+        </form>
+        <br>
+        <p class="font-bold col-pink"></p>
+
+      </div>
+
+
+      <!--baja-->
+      <div class="body" *ngIf="baja" style="overflow-y:scroll; height: 81vh;">
+
+          <button (click)="scanQrDNI()" class="form-group mb-3">
+              <span class="input-group-addon">
+                <i class="material-icons" style="font-size:25px; vertical-align: middle;">settings_overscan</i>
+                Scanear DNI
+              </span>
+            </button>
+  
+        <form [formGroup]="formBaja" id="formBaja" (submit)="bajaUsuario()">
+          <div class="font-bold col-cyan msg">
+            <h2>Baja de Usuario</h2>
+          </div>
+
+       
+
+          <div class="input-group">
+            <span class="input-group-addon">
+              <i class="material-icons" style="font-size:25px; vertical-align: middle;">crop_square</i>
+              Número DNI:
+            </span>
+            <div class="form-line">
+              <input type="text" class="form-control" formControlName="dniBaja" name="dniBaja" id="dniBaja"
+                [(ngModel)]="usuario.dni" required autofocus>
+            </div>
+            <label id="dniBaja-error" class="error" for="dniBaja"><span>{{ getError(formBaja, 'dniBaja')}}</span></label>
+          </div>
+          <div class="input-group">
+            <span class="input-group-addon">
+              <i class="material-icons" style="font-size:25px; vertical-align: middle;">crop_square</i>Motivo baja:
+            </span>
+            <div class="form-line">
+              <input type="text" class="form-control" id="motivoBaja" formControlName="motivoBaja" [(ngModel)]="usuario.motivo"
+                name="motivoBaja" required>
+            </div>
+            <label id="motivoBaja-error" class="error" for="motivoBaja"><span>{{getError(formBaja, 'motivoBaja')}}</span></label>
+          </div>
+
+
+
+
+          <button class="btn btn-block btn-lg bg-red waves-effect" [disabled]="!formBaja.valid" id="baja"
+            type="submit">Baja
+            <ion-spinner *ngIf="usuario.spin" name="lines-small"></ion-spinner>
+          </button>
+
+
+
+        </form>
+        <br>
+        <p class="font-bold col-pink"></p>
+
+      </div>
+
+
+      <!--modificacion-->
+      <div class="body" *ngIf="modificacion" style="overflow-y:scroll; height: 81vh;">
+
+          <button (click)="scanQrDNI()" class="form-group mb-3">
+              <span class="input-group-addon">
+                <i class="material-icons" style="font-size:25px; vertical-align: middle;">settings_overscan</i>
+                Scanear DNI
+              </span>
+            </button>
+
+        <form [formGroup]="formMod" id="formMod" (submit)="modificarUsuario()">
+
+          <div class="font-bold col-cyan msg">
+            <h2>Modifición de Usuario</h2>
+          </div>
+        
+          <div class="input-group">
+            <span class="input-group-addon">
+              <i class="material-icons" style="font-size:25px; vertical-align: middle;">crop_square</i>
+              Número DNI:
+            </span>
+            <div class="form-line">
+              <input type="text" class="form-control" formControlName="dniMod" name="dniMod" id="dniMod"
+                [(ngModel)]="usuario.dni" required autofocus>
+            </div>
+            <label id="dniMod-error" class="error" for="dniMod"><span>{{ getError(formMod, 'dniMod')}}</span></label>
+          </div>
+
+          <!--perfil mod-->
+          <div class="input-group mb-0" style="margin-bottom: 0; padding-bottom: 0">
+              <div class="row">
+              <div class="col-xs-3 m-0 p-0">
+                <span class="input-group-addon">
+                <i class="material-icons" style="font-size:25px; vertical-align: middle;">person</i>Perfil:</span>
+              </div>
+              <div class="col-xs-9">  
+                  <select formControlName="perfilMod" id="perfilMod" [(ngModel)]="usuario.perfil" name="perfilMod"
+                  class="form-control show-tick" style="border: #00c3ff solid 1px; margin-bottom: 0; padding-bottom: 0"  tabindex="-98">         
+                  <option name="perfilMod" value="supervisor">Supervisor</option>
+                  <option name="perfilMod" value="dueno">Dueño</option>
+                  <option name="perfilMod" value="mozo">Mozo</option>
+                  <option name="perfilMod" value="metre">Metre</option>
+                  <option name="perfilMod" value="bartender">Bartender</option>
+                  <option name="perfilMod" value="cocinero">Cocinero</option>
+                </select>
+            </div>
+            </div>
+            <label id="perfilMod-error" class="error" for="perfilMod"><span>{{ getError(formMod, 'perfilMod')}}</span></label>
+          </div>
+            <!-- fin perfil mod-->
+
+      
+
+
+
+          <button class="btn btn-block btn-lg bg-orange waves-effect" id="modificar" type="submit"
+            [disabled]="!formMod.valid">Modificación</button>
+
+
+        </form>
+        <br>
+        <p class="font-bold col-pink"></p>
+
+      </div>
+    </div>
+
+
+
+    <!--menu-->
+    <div *ngIf="menu_b" style="position: absolute; bottom: 0; width: 100%;z-index: 1200;">
+      <div class="row">
+        <div class="col-xs-3">
+          <div class="row">
+            <button class="btn bg-green  btn-block btn-lg waves-effect" (click)="menu('alta')">Alta</button>
+          </div>
+        </div>
+        <div class="col-xs-3">
+          <div class="row">
+            <button class="btn bg-red btn-block btn-lg  waves-effect" (click)="menu('baja')">Baja</button>
+          </div>
+        </div>
+        <div class="col-xs-4">
+          <div class="row">
+            <button class="btn bg-orange btn-block btn-lg   waves-effect"
+              (click)="menu('modificacion')">Modificacion</button>
+          </div>
+        </div>
+        <div class="col-xs-2">
+            <div class="row">
+                <button [routerLink]="['/principal']"
+                class="btn bg-cyan  btn-block btn-lg waves-effect"><i class="material-icons">home</i></button>
+            </div>
+          </div>
+        
+      </div>
+     <!--<div class="row">
+        <div class="col-xs-12"> <button [routerLink]="['/principal']"
+            class="btn bg-cyan  btn-block btn-lg waves-effect"><i class="material-icons">home</i></button>
+        </div>
+      </div>
+      --> 
+
+    </div>
+
+  </div>
+
+</body>

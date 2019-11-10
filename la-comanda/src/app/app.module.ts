@@ -18,6 +18,11 @@ import { AngularFireStorageModule } from '@angular/fire/storage';
 import { BarcodeScanner } from '@ionic-native/barcode-scanner/ngx';
 import { ModalProductoPage } from './modal-producto/modal-producto.page';
 import { ModalProductoPageModule } from './modal-producto/modal-producto.module';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { Vibration } from '@ionic-native/vibration/ngx';
+
+
+
 
 
 
@@ -31,7 +36,9 @@ import { ModalProductoPageModule } from './modal-producto/modal-producto.module'
      AngularFireStorageModule,
      ModalProductoPageModule
   ],
+  
   providers: [ 
+  	Vibration,
     ScreenOrientation,   
     StatusBar,
     SplashScreen,  

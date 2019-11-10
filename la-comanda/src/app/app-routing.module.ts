@@ -12,6 +12,9 @@ const routes: Routes = [
   { path: 'lista-productos', loadChildren: './lista-productos/lista-productos.module#ListaProductosPageModule' },
   
 
+  { path: 'mesa-abm', loadChildren: './mesa-abm/mesa-abm.module#MesaAbmPageModule' },
+  { path: 'usuario-abm', loadChildren: './usuario-abm/usuario-abm.module#UsuarioAbmPageModule' },
+  { path: 'principal', loadChildren: './principal/principal.module#PrincipalPageModule' },
  
 ];
 
