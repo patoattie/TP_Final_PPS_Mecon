@@ -1,4 +1,4 @@
-<body class="signup-page" style="overflow-y: scroll;" (emisor)="countChange($event)">
+<body class="signup-page" style="overflow-y: scroll;" >
   <div class="signup-box">
       <div class="logo">
           <a href="javascript:void(0);" style="padding-bottom: 10px;"><img src="../../assets/logo_tipo.svg"></a>
@@ -18,7 +18,7 @@
                       </span>
                       <div class="form-line">
                           <input type="text" class="form-control" [(ngModel)]="nuevoProducto.nombre" name="Nombre de Producto"
-                              placeholder="Nombre de Producto" required autofocus>
+                              placeholder="Nombre de Producto" disabled autofocus>
                       </div>
                   </div>
                   <div class="input-group">
@@ -71,12 +71,10 @@
                                 referencias</a>.</label>
                     </div>
 
-                    <button class="btn btn-block btn-lg bg-green waves-effect" type="submit"
-                        (click)="alta()"*ngIf="!modificarBorrar">Alta</button>
                     <button class="btn btn-block btn-lg bg-red waves-effect" type="submit"
-                        (click)="alta()" *ngIf="modificarBorrar">Baja</button>
+                        (click)="Baja()" >Baja</button>
                     <button class="btn btn-block btn-lg bg-yellow waves-effect" type="submit"
-                        (click)="alta()"*ngIf="modificarBorrar">Modificar</button>
+                        (click)="Modificar()">Modificar</button>
 
               
           </div>

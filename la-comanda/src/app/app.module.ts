@@ -16,17 +16,20 @@ import { Camera } from '@ionic-native/camera/ngx';
 import {File } from "@ionic-native/file/ngx";
 import { AngularFireStorageModule } from '@angular/fire/storage';
 import { BarcodeScanner } from '@ionic-native/barcode-scanner/ngx';
+import { ModalProductoPage } from './modal-producto/modal-producto.page';
+import { ModalProductoPageModule } from './modal-producto/modal-producto.module';
 
 
 
 @NgModule({
   declarations: [AppComponent],
-  entryComponents: [],
+  entryComponents:[],
   imports: [  BrowserModule, IonicModule.forRoot(), AppRoutingModule,
     AngularFireModule.initializeApp(environment.firebase),
      AngularFireAuthModule,
      AngularFirestoreModule,
-     AngularFireStorageModule
+     AngularFireStorageModule,
+     ModalProductoPageModule
   ],
   providers: [ 
     ScreenOrientation,   

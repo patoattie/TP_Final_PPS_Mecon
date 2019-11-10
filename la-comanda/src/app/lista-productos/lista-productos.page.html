@@ -4,10 +4,10 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
-<ion-item button *ngFor="let producto of (productosLista | async)">
+<ion-content    >
+<ion-item button *ngFor="let producto of (productosLista | async)" >
   
-  <ion-card class="img-card">
+  <ion-card class="img-card" *ngIf="!producto.motivo_baja" (click)="click(producto)">
   <ion-card-header>
     <ion-card-title>{{producto.nombre}}</ion-card-title>
     <img src="{{producto.URL[0]}}">

@@ -17,14 +17,21 @@ export class FirebasegeneralService {
 
   }
 
-  async altaProducto(Producto:Producto, Files:File[]){
-    
+  async altaProducto(Producto:Producto, Files?:File[]){
+      if(Files){
       this.filestorage.subir(Files,Producto)
-      .then(()=>console.log(Producto));
+      .then(()=>console.log(Producto));}
+      else{
+        console.log("Entro a esta");
+        
+        this._angularFirestore.collection('producto').doc(Producto.nombre).set(Producto);
+      }
   }
 
+ 
+
   getAllproducto(){
-    return this._angularFirestore.collection("producto")
+    return this._angularFirestore.collection("producto",  ref => ref.where("motivo_baja","==",""))
       .valueChanges();
 
   }
