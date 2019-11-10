@@ -1,0 +1,38 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>pedido</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <button (click)="scanQr()" class="form-group mb-3">
+    <span class="input-group-addon">
+        <i class="material-icons"
+            style="font-size:25px; vertical-align: middle;">settings_overscan</i>
+        Scanear Mesa
+    </span>
+</button>
+<div class="input-group">
+  <span class="input-group-addon">
+      <i class="material-icons" style="font-size:25px; vertical-align: middle;">crop_square</i>
+      Número de mesa:
+  </span>
+  <div class="form-line">
+      <input type="text" class="form-control" [(ngModel)]="mesa.numero" name="Número de mesa"
+          disabled autofocus>
+  </div>
+</div>
+
+<div class="row" >
+
+  <div class="col-xs-4">
+      <button class="btn btn-block bg-pink waves-effect" (click)="agregarProducto()"
+          type="submit">Agregar productos</button>
+
+      <ion-spinner name="lines-small" slot="end" *ngIf="getEnEspera()"></ion-spinner>
+
+  </div>
+</div>
+
+</ion-content>

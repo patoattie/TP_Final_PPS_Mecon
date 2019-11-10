@@ -20,6 +20,7 @@ import { ModalProductoPage } from './modal-producto/modal-producto.page';
 import { ModalProductoPageModule } from './modal-producto/modal-producto.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { Vibration } from '@ionic-native/vibration/ngx';
+import { ModalListadoProductosPedidoPipe } from './modal-listado-productos-pedido.pipe';
 
 
 
@@ -27,7 +28,7 @@ import { Vibration } from '@ionic-native/vibration/ngx';
 
 
 @NgModule({
-  declarations: [AppComponent],
+  declarations: [AppComponent, ModalListadoProductosPedidoPipe],
   entryComponents:[],
   imports: [  BrowserModule, IonicModule.forRoot(), AppRoutingModule,
     AngularFireModule.initializeApp(environment.firebase),

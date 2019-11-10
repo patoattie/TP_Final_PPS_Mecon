@@ -99,7 +99,10 @@
         "ANDROID_SUPPORT_V4_VERSION": "27.+"
       }
     },
-    "cordova-plugin-vibration": {}
+    "cordova-plugin-vibration": {},
+    "platforms": [
+      "android"
+    ]
   },
   "platforms": [
     "android"
