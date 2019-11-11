@@ -35,4 +35,8 @@ export class FirebasegeneralService {
       .valueChanges();
 
   }
+  empiezaPedido(pedido){
+    console.log("aca tambien");
+    this.filestorage.empiezaPedido(pedido);
+  }
 }

@@ -1,19 +1,14 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-title>pedido</ion-title>
-  </ion-toolbar>
-</ion-header>
 
 <ion-content>
 
-  <button (click)="scanQr()" class="form-group mb-3">
+  <button (click)="scanQr()" class="form-group mb-3" *ngIf="!escaneo">
     <span class="input-group-addon">
         <i class="material-icons"
             style="font-size:25px; vertical-align: middle;">settings_overscan</i>
         Scanear Mesa
     </span>
-</button>
-<div class="input-group">
+  </button>
+<div class="input-group" *ngIf="escaneo">
   <span class="input-group-addon">
       <i class="material-icons" style="font-size:25px; vertical-align: middle;">crop_square</i>
       Número de mesa:
@@ -24,7 +19,7 @@
   </div>
 </div>
 
-<div class="row" >
+<div class="row" *ngIf="listoParaPedir">
 
   <div class="col-xs-4">
       <button class="btn btn-block bg-pink waves-effect" (click)="agregarProducto()"
@@ -34,5 +29,6 @@
 
   </div>
 </div>
+
 
 </ion-content>

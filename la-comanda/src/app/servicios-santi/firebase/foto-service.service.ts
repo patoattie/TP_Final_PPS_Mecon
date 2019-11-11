@@ -6,6 +6,8 @@ import { AngularFirestore, AngularFirestoreDocument } from '@angular/fire/firest
 import { Observable } from 'rxjs';
 import { Producto } from 'src/app/clases/producto';
 import { ABlobService } from '../a-blob.service';
+import { AngularFireAuth } from '@angular/fire/auth';
+import { Pedido } from 'src/app/clases/pedido';
 
 @Injectable({
   providedIn: 'root'
@@ -18,6 +20,7 @@ export class FotoService {
   constructor(
     private storage: AngularFireStorage,
     private fireStore: AngularFirestore,
+    private fireAuth: AngularFireAuth,
     private aBlob:ABlobService
     
   ) {
@@ -86,7 +89,20 @@ export class FotoService {
     setTimeout(()=>this.fireStore.collection('producto').doc(producto.nombre).set(producto),8000);
   }
 
-
+  empiezaPedido(pedido:Pedido){
+    /*this.fireStore.collection('pedidos', ref => ref.orderBy("id","desc"))
+    .snapshotChanges().subscribe((id)=>{*/
+      
+      this.fireStore.collection('pedidos').add({user:this.fireAuth.auth.currentUser.uid,
+                                                estado:pedido.estado,
+                                                id:1
+        }).then((r)=>{
+                      console.log("mando y entro");
+                      r.collection("productos").add(pedido.producto)
+        });
+   // });
+    
+  }
 
   
 }
