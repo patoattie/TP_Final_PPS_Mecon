@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "566153021091",
+    "firebase_url": "https://la-comanda-29ab5.firebaseio.com",
+    "project_id": "la-comanda-29ab5",
+    "storage_bucket": "la-comanda-29ab5.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:566153021091:android:47c2a57a70f9d6007ce116",
+        "android_client_info": {
+          "package_name": "io.ionic.prontop"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "566153021091-cvhfn3psucb6gmkn5nbgj92uht3nbf10.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "io.ionic.prontop",
+            "certificate_hash": "9cf44292563b0a0edceb0b0f8b6a4e513d22abdb"
+          }
+        },
+        {
+          "client_id": "566153021091-a3d74ohk5718oa9ndk5ja7euqpp9ae8m.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDsmYLFdgiyeoXjfVDu2tTiccvhjeJweRo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "566153021091-a3d74ohk5718oa9ndk5ja7euqpp9ae8m.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
