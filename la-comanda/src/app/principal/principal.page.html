@@ -83,6 +83,16 @@
           </div>
         </div>
 
+        
+        <div class="row" *ngIf="(perfil == 'cliente' || perfil == 'anonimo')">
+          <div class="col-xs-6">
+            <button class="btn bg-red btn-block btn-lg  waves-effect"  [routerLink]="['/ingreso-local']" >Ingreso al local</button>
+          </div>
+        </div>
+
+
+
+       
 
         <div class="row" *ngIf="(perfil == 'supervisor' || perfil == 'dueno')">
           <div class="col-xs-6">
@@ -151,6 +161,10 @@
     <button class="col p-0">Alta cliente</button>
     <button class="col p-0">Encuesta</button>
     <button class="col p-0">Estadísticas</button>
+
+    <div class="col-xs-6">
+      <button class="btn bg-red btn-block btn-lg  waves-effect"  (click)="this.fcm.getToken()" >Suscribe notificaciones Ingreso al local</button>
+    </div>
 
 
   </div>

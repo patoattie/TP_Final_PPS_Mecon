@@ -1,7 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FCM } from '@ionic-native/fcm/ngx';
-import { HTTP } from '@ionic-native/http/ngx';
-
+import { FcmService } from '../servicios-mecha/fcm.service';
 @Component({
   selector: 'app-notificaciones',
   templateUrl: './notificaciones.page.html',
@@ -10,13 +8,19 @@ import { HTTP } from '@ionic-native/http/ngx';
 export class NotificacionesPage implements OnInit {
   backend: any;
 
-  constructor(private fcm: FCM) { }
+  constructor(
+    private fcm: FcmService) { }
 
   ngOnInit() {
     this.fcm.getToken().then(token => {
-      this.backend.registerToken(token);
+      this.fcm.guardarTokenEnFirestore(token);
+      //this.backend.registerToken(token);
       console.log(token);
     });
+
+    this.fcm.ComprobarNotificationes() ;
+
   }
 
+  
 }

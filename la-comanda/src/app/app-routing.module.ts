@@ -16,7 +16,8 @@ const routes: Routes = [
   { path: 'usuario-abm', loadChildren: './usuario-abm/usuario-abm.module#UsuarioAbmPageModule' },
   { path: 'principal', loadChildren: './principal/principal.module#PrincipalPageModule' },  { path: 'pedido', loadChildren: './pedido/pedido.module#PedidoPageModule' },
   { path: 'modal-listado-productos-pedido', loadChildren: './modal-listado-productos-pedido/modal-listado-productos-pedido.module#ModalListadoProductosPedidoPageModule' },
-  { path: 'notificaciones', loadChildren: './notificaciones/notificaciones.module#NotificacionesPageModule' },
+  { path: 'notificaciones', loadChildren: './notificaciones/notificaciones.module#NotificacionesPageModule' },  { path: 'ingreso-local', loadChildren: './ingreso-local/ingreso-local.module#IngresoLocalPageModule' },
+
 
  
 ];
