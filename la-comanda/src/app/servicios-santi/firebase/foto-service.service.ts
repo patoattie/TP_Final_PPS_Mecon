@@ -1,4 +1,4 @@
-import { Injectable, Input, Output, EventEmitter } from '@angular/core';
+import { Injectable, Input, Output, EventEmitter, ɵConsole } from '@angular/core';
 import { AngularFireStorage } from '@angular/fire/storage';
 import { AngularFirestore, AngularFirestoreDocument } from '@angular/fire/firestore';
 //import { File } from "@ionic-native/file/ngx";
@@ -8,6 +8,7 @@ import { Producto } from 'src/app/clases/producto';
 import { ABlobService } from '../a-blob.service';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { Pedido } from 'src/app/clases/pedido';
+import { map } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -16,7 +17,7 @@ export class FotoService {
   porcentaje: number;
   finalizado: boolean;
   ref:any[];
-
+  spinner :boolean;
   constructor(
     private storage: AngularFireStorage,
     private fireStore: AngularFirestore,
@@ -92,17 +93,41 @@ export class FotoService {
   empiezaPedido(pedido:Pedido){
     /*this.fireStore.collection('pedidos', ref => ref.orderBy("id","desc"))
     .snapshotChanges().subscribe((id)=>{*/
-      
-      this.fireStore.collection('pedidos').add({user:this.fireAuth.auth.currentUser.uid,
-                                                estado:pedido.estado,
-                                                id:1
+      this.spinner = true;
+      this.getLastFromList().then((ultimo)=>{
+        let id:number;
+        ultimo.forEach(e=>{
+            console.log(e[0]);
+            id=(e[0].id)+1;
+            console.log(id);})
+          
+        setTimeout(()=>
+                  this.fireStore.collection('pedidos').add({'user':this.fireAuth.auth.currentUser.uid,
+                                                            'estado':pedido.estado,
+                                                            'id':id
         }).then((r)=>{
                       console.log("mando y entro");
-                      r.collection("productos").add(pedido.producto)
-        });
+                      r.collection("productos").add(pedido.producto).then(()=>this.spinner = false);
+
+        }),1000);
    // });
-    
+    });
   }
 
-  
+
+  async getLastFromList() {
+    
+    let mesas= this.fireStore.collection('pedidos', ref=>ref
+    .orderBy('id', 'desc').limit(1)
+    ).snapshotChanges().pipe(map(actions => actions.map(this.documentToDomainObject)));
+    return mesas;
+    
+
+  }
+
+  documentToDomainObject = _ => {
+    const object = _.payload.doc.data();
+    console.log(_.payload.doc.data());
+    return object;
+  }
 }

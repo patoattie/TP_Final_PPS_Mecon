@@ -9,6 +9,7 @@ import { AngularFirestore } from '@angular/fire/firestore';
   providedIn: 'root'
 })
 export class FirebasegeneralService {
+  
 
   constructor(private filestorage:FotoService,
     private _angularFirestore:AngularFirestore,
@@ -36,7 +37,10 @@ export class FirebasegeneralService {
 
   }
   empiezaPedido(pedido){
+    
+
     console.log("aca tambien");
     this.filestorage.empiezaPedido(pedido);
+
   }
 }
