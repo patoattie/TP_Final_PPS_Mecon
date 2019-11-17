@@ -97,19 +97,25 @@ export class FotoService {
       this.getLastFromList().then((ultimo)=>{
         let id:number;
         ultimo.forEach(e=>{
-            console.log(e[0]);
+            
             id=(e[0].id)+1;
-            console.log(id);})
-          
+            pedido.id=id;
+            console.log(pedido);
+            })
+            pedido.user=this.fireAuth.auth.currentUser.uid;
+            
         setTimeout(()=>
-                  this.fireStore.collection('pedidos').add({'user':this.fireAuth.auth.currentUser.uid,
-                                                            'estado':pedido.estado,
-                                                            'id':id
-        }).then((r)=>{
+                  this.fireStore.collection('pedidos').add({
+                                                            "user":pedido.user,
+                                                            "id":pedido.id,
+                                                            "estado":pedido.estado,
+                                                            "mesa":pedido.mesa,
+                                                            "productos[]":pedido.producto}
+        ).then((r)=>{console.log(pedido);
                       console.log("mando y entro");
                       r.collection("productos").add(pedido.producto).then(()=>this.spinner = false);
 
-        }),1000);
+        }),2000);
    // });
     });
   }
@@ -127,7 +133,7 @@ export class FotoService {
 
   documentToDomainObject = _ => {
     const object = _.payload.doc.data();
-    console.log(_.payload.doc.data());
+    
     return object;
   }
 }

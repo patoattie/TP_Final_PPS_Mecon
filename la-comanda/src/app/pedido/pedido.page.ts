@@ -43,8 +43,10 @@ export class PedidoPage implements OnInit {
       this.escaneo=true;
       if(this.mesa.numero!=0){
         console.log("aca por lo menos?");
+        this.pedidos.mesa=this.mesa.numero;
         this.pedidos.estado="esperaMesa";
         this.firebaseSanti.empiezaPedido(this.pedidos);
+        this.listoParaPedir=true;
       }
     }).catch(err => {
       this.mensaje = 'Error carga código Qr';
@@ -57,6 +59,7 @@ export class PedidoPage implements OnInit {
   }
 
   async agregarProducto(){
+      
       const modal = await this.modalController.create({
         component: ModalListadoProductosPedidoPage,
         componentProps:{

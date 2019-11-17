@@ -21,6 +21,7 @@ import { ModalProductoPageModule } from './modal-producto/modal-producto.module'
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { Vibration } from '@ionic-native/vibration/ngx';
 import { ModalListadoProductosPedidoPipe } from './modal-listado-productos-pedido.pipe';
+import { ModalListadoProductosPedidoPageModule } from './modal-listado-productos-pedido/modal-listado-productos-pedido.module';
 
 
 
@@ -35,7 +36,8 @@ import { ModalListadoProductosPedidoPipe } from './modal-listado-productos-pedid
      AngularFireAuthModule,
      AngularFirestoreModule,
      AngularFireStorageModule,
-     ModalProductoPageModule
+     ModalProductoPageModule,
+     ModalListadoProductosPedidoPageModule
   ],
   
   providers: [ 

@@ -14,8 +14,8 @@ const routes: Routes = [
 
   { path: 'mesa-abm', loadChildren: './mesa-abm/mesa-abm.module#MesaAbmPageModule' },
   { path: 'usuario-abm', loadChildren: './usuario-abm/usuario-abm.module#UsuarioAbmPageModule' },
-  { path: 'principal', loadChildren: './principal/principal.module#PrincipalPageModule' },  { path: 'pedido', loadChildren: './pedido/pedido.module#PedidoPageModule' },
-  { path: 'modal-listado-productos-pedido', loadChildren: './modal-listado-productos-pedido/modal-listado-productos-pedido.module#ModalListadoProductosPedidoPageModule' },
+  { path: 'principal', loadChildren: './principal/principal.module#PrincipalPageModule' },
+  { path: 'pedido', loadChildren: './pedido/pedido.module#PedidoPageModule' }
 
  
 ];

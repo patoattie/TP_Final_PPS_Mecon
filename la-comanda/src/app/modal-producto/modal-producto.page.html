@@ -8,7 +8,7 @@
           <div class="body">
                   <div class="msg">Alta de producto</div>
                   <div class="form-group mb-3">
-                      <span class="input-group-addon" (click)="escan()">
+                      <span class="input-group-addon" >
                           <i class="material-icons" style="font-size:25px; vertical-align: middle;">crop_square</i>Scanear nombre producto
                       </span>
                   </div>
@@ -49,22 +49,7 @@
                           
                       </div>
                   </div>
-                  <div class="form-group mb-3">
-                      <span class="input-group-addon" (click)="selectImageSource()">
-                          <i class="material-icons" style="font-size:25px; vertical-align: middle;">photo_camera</i>Sacar una Foto
-                      </span>
-                  </div>
-                  <div class="custom-dropzone" ngx-dropzone [accept]="'image/*'" (change)="onSelect($event)">
-                    <ngx-dropzone-label>
-                        
-                            <i class="material-icons" style="font-size:25px; vertical-align: middle;">insert_photo</i>Insertar Foto 
-                        
-                    </ngx-dropzone-label>
-                    <ngx-dropzone-image-preview ngProjectAs="ngx-dropzone-preview" *ngFor="let f of files" [file]="f"
-                        [removable]="true" (removed)="onRemove(f)">
-                        <ngx-dropzone-label>{{ f.name }} ({{ f.type }})</ngx-dropzone-label>
-                    </ngx-dropzone-image-preview>
-                </div>
+                 
                  <div class="form-group">
                         <input type="checkbox" name="terms" id="terms" class="filled-in chk-col-pink">
                         <label for="terms">Estoy de acuerdo con <a href="javascript:void(0);">los términos y

@@ -6,4 +6,5 @@ export class Producto {
     precio:number;
     URL:string[];
     motivo_baja:string;
+    cantidad:number;
 }

@@ -34,7 +34,7 @@ export class AltaProductosPage implements OnInit {
       console.warn('No cordova.js');
     }
     if(!this.nuevoProducto){
-    this.nuevoProducto={descripcion:"",nombre:"",tiempo_elaboracion:"",tiempo_elaboracion_real:"",precio:0,URL:[],motivo_baja:""};
+    this.nuevoProducto={descripcion:"",nombre:"",tiempo_elaboracion:"",tiempo_elaboracion_real:"",precio:0,URL:[],motivo_baja:"",cantidad:0};
     this.modificarBorrar=false;
     }
 
