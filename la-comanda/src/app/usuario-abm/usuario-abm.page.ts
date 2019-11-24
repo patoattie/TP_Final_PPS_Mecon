@@ -10,6 +10,7 @@ import { NodeCompatibleEventEmitter } from 'rxjs/internal/observable/fromEvent';
 import { AuthService } from '../servicios-mecha/auth.service';
 import swal from 'sweetalert';
 
+
 @Component({
   selector: 'app-usuario-abm',
   templateUrl: './usuario-abm.page.html',
@@ -328,5 +329,10 @@ export class UsuarioAbmPage implements OnInit {
     }
   }
 
+confirmaEmail(){
+
+ 
+}
+  
 
 }

@@ -6,6 +6,10 @@ import { Router } from '@angular/router';
 import { UsuarioService } from './usuario.service';
 import swal from 'sweetalert';
 
+import * as firebase from 'firebase';
+
+
+
 
 @Injectable({
   providedIn: 'root'
@@ -60,8 +64,19 @@ export class AuthService {
 
 
   login(usuario: Usuario): Promise<any> {
-    return this.angularFireAuth.auth.signInWithEmailAndPassword(
-      usuario.email, usuario.clave);
+    return this.angularFireAuth.auth.signInWithEmailAndPassword( 
+      usuario.email, usuario.clave) .then((result) => {
+        if (result.user.emailVerified !== true) {
+          this.SendVerificationMail();
+          swal("Error", "Email no verificado, ingrese a su cuenta de email para verificar la cuenta", "error");
+        } else {
+          swal("Verificación exitosa!", "Click para continuar", "success");
+          
+        }
+        
+      }).catch((error) => {
+        window.alert(error.message)
+      })
   }
 
 
@@ -79,9 +94,10 @@ export class AuthService {
   async SignUp(usuario: Usuario) {
     return this.angularFireAuth.auth.createUserWithEmailAndPassword(usuario.email, usuario.clave)
       .then((result) => {
-        console.log("Se registró con éxito");
-        this.route.navigate(['login']);
-        console.log(result.user)
+        console.log("Se registró con éxito")    
+        console.log(result.user);
+        //result.user.sendEmailVerification();
+        this.SendVerificationMail();
       }).catch((error) => {
         console.log(error.message)
       })
@@ -94,4 +110,14 @@ export class AuthService {
       // An error happened.
     });
   }
+
+  // Send email verfificaiton when new user sign up
+  SendVerificationMail() {
+    return this.angularFireAuth.auth.currentUser.sendEmailVerification()
+    .then(() => {
+      this.route.navigate(['login']);
+    })
+  }
+
+   
 }
