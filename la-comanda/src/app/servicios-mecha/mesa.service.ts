@@ -42,7 +42,8 @@ export class MesaService {
             comensales: mesa.comensales,
             tipo_comensales: mesa.tipo_comensales,
             foto: URL,
-            baja: false
+            baja: false,
+            habilitada: true
           }
 
 
@@ -115,11 +116,28 @@ export class MesaService {
    this.fireStore.collection('mesas').doc('mesa_' + mesa.numero).update(datos).then(() =>  this.spinner = false);
   }
 
+  TomarMesa(mesa: Mesa) {    
+    this.spinner = true;
+    const datos = {
+      habilitada: false
+    }
+   this.fireStore.collection('mesas').doc('mesa_' + mesa.numero).update(datos).then(() =>  this.spinner = false);
+  }
+
+  LiberarMesa(mesa: Mesa) {    
+    this.spinner = true;
+    const datos = {
+      habilitada: true
+    }
+   this.fireStore.collection('mesas').doc('mesa_' + mesa.numero).update(datos).then(() =>  this.spinner = false);
+  }
+
  bajaMesa(mesa: Mesa) {    
   this.spinner = true;
     const datos = {
       baja: mesa.baja,
-      motivo: mesa.motivo
+      motivo: mesa.motivo,
+      hailitada: false
     }
    this.fireStore.collection('mesas').doc('mesa_' + mesa.numero).update(datos).then(() =>   this.spinner = false);
   }

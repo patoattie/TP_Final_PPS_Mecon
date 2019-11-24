@@ -7,5 +7,6 @@ export class Mesa {
     motivo:string;
     id:any;
     spin:boolean;
+    habilitada:boolean;
     
 }
