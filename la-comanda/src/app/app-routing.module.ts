@@ -18,6 +18,7 @@ const routes: Routes = [
   { path: 'modal-listado-productos-pedido', loadChildren: './modal-listado-productos-pedido/modal-listado-productos-pedido.module#ModalListadoProductosPedidoPageModule' },
   { path: 'notificaciones', loadChildren: './notificaciones/notificaciones.module#NotificacionesPageModule' },  { path: 'ingreso-local', loadChildren: './ingreso-local/ingreso-local.module#IngresoLocalPageModule' },
   { path: 'mesas-lista', loadChildren: './mesas-lista/mesas-lista.module#MesasListaPageModule' },
+  { path: 'pendientes-lista', loadChildren: './pendientes-lista/pendientes-lista.module#PendientesListaPageModule' },
 
 
  

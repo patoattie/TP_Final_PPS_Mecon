@@ -117,7 +117,47 @@ export class UsuarioService {
 
   }
 
+  
+  TomarCliente(usuario: Usuario) {    
+    this.spinner = true;
+    const datos = {
+      pendiente: false
+    }
+    this.fireStore.collection('pendientes').doc('usuario_' + usuario.dni).update(datos).then(() =>  this.spinner = false);
+  }
 
+  LiberarCliente(usuario: Usuario) {    
+    this.spinner = true;
+    const datos = {
+      pendiente: true
+    }
+    this.fireStore.collection('pendientes').doc('usuario_' + usuario.dni).update(datos).then(() =>  this.spinner = false);
+  }
+
+
+agregarUsuarioPendientes(usuario: Usuario){
+  this.spinner = true;
+  const datos = {
+    foto: usuario.foto,
+    dni: usuario.dni,
+    nombre: usuario.nombre,
+    apellido: usuario.apellido,
+    email: usuario.email,
+    pendiente: true
+  }
+  var res = this.fireStore.collection('pendientes').doc('usuario_' + usuario.dni).set(datos).then(() => {
+    this.spinner = false;
+  }
+)
+    
+}
+
+traerTodasPendientes() {
+  let usuarios = this.fireStore.collection('pendientes', ref => ref.where('pendiente', '==', true)).snapshotChanges()
+    .pipe(map(actions => actions.map(this.documentToDomainObject)));
+  return usuarios;
+
+}
 
 
   traerUnaUsuario(uid: string): any {

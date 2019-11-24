@@ -10,6 +10,7 @@ export class Usuario {
     spin:boolean;
     email:any;
     clave:string;
+
 }
 
 
