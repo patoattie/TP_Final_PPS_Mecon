@@ -146,38 +146,39 @@
 
 
   <div *ngIf="perfil == 'metre'">
-
-
-
-    <!-- perfil metre
-          botones
-          alta cliente
-          encuesta empleado
-          estadisticas
-          
-          -->
-
-
-    <button class="col p-0">Alta cliente</button>
-    <button class="col p-0">Encuesta</button>
-    <button class="col p-0">Estadísticas</button>
-
-    <div class="col-xs-6">
-      <button class="btn bg-red btn-block btn-lg  waves-effect"  (click)="this.fcm.getToken()" >Suscribe notificaciones Ingreso al local</button>
+      <h2>Funciones de metre</h2>
+    <div class="col-xs-12">
+      <button class="btn bg-red btn-block btn-lg  waves-effect"  (click)="this.fcm.getToken()" >Suscribe notificaciones</button>
     </div>
 
 
-    <div class="col-xs-6">
-        <button class="btn bg-red btn-block btn-lg  waves-effect" [routerLink]="['/mesas-lista']" >Listado de mesas para asignar</button>
+    <div class="col-xs-12">
+        <button class="btn bg-red btn-block btn-lg  waves-effect" [routerLink]="['/mesas-lista']" >Mesas para asignar</button>
       </div>
 
       
-    <div class="col-xs-6">
+    <div class="col-xs-12">
         <button class="btn bg-red btn-block btn-lg  waves-effect" [routerLink]="['/pendientes-lista']" >Usuarios Pendientes</button>
       </div>
       
-   
+      <h2>No son funciones de metre</h2>
+      <div class="col-xs-12">
+          <button class="btn bg-green  btn-block btn-lg waves-effect" [routerLink]="['/usuario-abm']">ABM Usuarios</button>
+        </div>
+        <div class="col-xs-12">
+          <button class="btn bg-green  btn-block btn-lg waves-effect" [routerLink]="['/mesa-abm']">ABM Mesas</button>
+        </div>   
+        <div class="col-xs-12">
+            <button class="btn bg-green  btn-block btn-lg waves-effect" [routerLink]="['/pedido']">Realizar pedido</button>
+        </div>
+        <div class="col-xs-12">
+          <button class="btn bg-green  btn-block btn-lg waves-effect" [routerLink]="['/fb']">fb</button>
+      </div>
+
+       
+       
   </div>
+
 
 
 
@@ -216,3 +217,4 @@
   </div>
 
 </body>
+

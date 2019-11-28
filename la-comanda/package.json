@@ -24,6 +24,7 @@
     "@ionic-native/barcode-scanner": "^5.16.0",
     "@ionic-native/camera": "^5.15.1",
     "@ionic-native/core": "^5.0.0",
+    "@ionic-native/facebook": "^5.17.1",
     "@ionic-native/fcm": "^5.16.0",
     "@ionic-native/file": "^5.15.1",
     "@ionic-native/screen-orientation": "^5.15.1",
@@ -106,6 +107,12 @@
         "FCM_VERSION": "18.0.0",
         "GRADLE_TOOLS_VERSION": "3.5.0",
         "GOOGLE_SERVICES_VERSION": "4.2.0"
+      },
+      "cordova-plugin-facebook4-no-zxing": {
+        "APP_ID": "440727726613489",
+        "APP_NAME": "io.ionic.prontop",
+        "FACEBOOK_HYBRID_APP_EVENTS": "false",
+        "FACEBOOK_ANDROID_SDK_VERSION": "4.40.0"
       }
     },
     "cordova-plugin-vibration": {},

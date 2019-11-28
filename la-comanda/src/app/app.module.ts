@@ -13,7 +13,7 @@ import { AngularFireModule } from '@angular/fire';
 import { AngularFireAuthModule } from '@angular/fire/auth';
 import { AngularFirestoreModule } from "@angular/fire/firestore";
 import { Camera } from '@ionic-native/camera/ngx';
-import {File } from "@ionic-native/file/ngx";
+import { File } from "@ionic-native/file/ngx";
 import { AngularFireStorageModule } from '@angular/fire/storage';
 import { BarcodeScanner } from '@ionic-native/barcode-scanner/ngx';
 import { ModalProductoPage } from './modal-producto/modal-producto.page';
@@ -22,34 +22,38 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { Vibration } from '@ionic-native/vibration/ngx';
 import { ModalListadoProductosPedidoPipe } from './modal-listado-productos-pedido.pipe';
 import { FCM } from '@ionic-native/fcm/ngx';
-
+import { FbLoginComponent } from './componentes/fb-login/fb-login.component';
+import { Facebook } from '@ionic-native/facebook/ngx';
+import { CommonModule } from '@angular/common';
 
 
 
 
 @NgModule({
-  declarations: [AppComponent, ModalListadoProductosPedidoPipe],
-  entryComponents:[],
-  imports: [  BrowserModule, IonicModule.forRoot(), AppRoutingModule,
+  declarations: [AppComponent, ModalListadoProductosPedidoPipe, FbLoginComponent],
+  entryComponents: [],
+  imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule,
     AngularFireModule.initializeApp(environment.firebase),
-     AngularFireAuthModule,
-     AngularFirestoreModule,
-     AngularFireStorageModule,
-     ModalProductoPageModule
+    AngularFireAuthModule,
+    AngularFirestoreModule,
+    AngularFireStorageModule,
+    ModalProductoPageModule,
+    CommonModule,
   ],
-  
-  providers: [ 
-  	Vibration,
-    ScreenOrientation,   
+
+  providers: [
+    Vibration,
+    ScreenOrientation,
     StatusBar,
-    SplashScreen,  
+    SplashScreen,
     Camera,
     File,
     BarcodeScanner,
-	FCM,
+    FCM,
+    Facebook,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
-      
+
   ],
   bootstrap: [AppComponent]
 })
-export class AppModule {}
+export class AppModule { }

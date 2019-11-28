@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 import { ModalProductoPage } from './modal-producto/modal-producto.page';
+import { FbLoginComponent } from './componentes/fb-login/fb-login.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'splash', pathMatch: 'full' },
@@ -14,12 +15,15 @@ const routes: Routes = [
 
   { path: 'mesa-abm', loadChildren: './mesa-abm/mesa-abm.module#MesaAbmPageModule' },
   { path: 'usuario-abm', loadChildren: './usuario-abm/usuario-abm.module#UsuarioAbmPageModule' },
-  { path: 'principal', loadChildren: './principal/principal.module#PrincipalPageModule' },  { path: 'pedido', loadChildren: './pedido/pedido.module#PedidoPageModule' },
+  { path: 'principal', loadChildren: './principal/principal.module#PrincipalPageModule' },
+  { path: 'pedido', loadChildren: './pedido/pedido.module#PedidoPageModule' },
   { path: 'modal-listado-productos-pedido', loadChildren: './modal-listado-productos-pedido/modal-listado-productos-pedido.module#ModalListadoProductosPedidoPageModule' },
-  { path: 'notificaciones', loadChildren: './notificaciones/notificaciones.module#NotificacionesPageModule' },  { path: 'ingreso-local', loadChildren: './ingreso-local/ingreso-local.module#IngresoLocalPageModule' },
+  { path: 'notificaciones', loadChildren: './notificaciones/notificaciones.module#NotificacionesPageModule' },
+  { path: 'ingreso-local', loadChildren: './ingreso-local/ingreso-local.module#IngresoLocalPageModule' },
   { path: 'mesas-lista', loadChildren: './mesas-lista/mesas-lista.module#MesasListaPageModule' },
   { path: 'pendientes-lista', loadChildren: './pendientes-lista/pendientes-lista.module#PendientesListaPageModule' },
-
+  { path: 'fb', component:  FbLoginComponent },
+ 
 
  
 ];
