@@ -223,15 +223,15 @@ exports.makeUppercase = functions.database.ref('/mensajes/{pushId}/original')
       results[0].forEach(async (result: { data: () => { token: any, userId: string }; }) => {
           const tokens: any[] = [];
           const token = result.data().token;
-          const userId = result.data().userId;
+          //const userId = result.data().userId;
           tokens.push(token);
 
           
       // Notification details.
       const payload = {
         notification: {
-          title: 'Hay un nuevo cliente en la sala!',
-          body:  `${userId} acaba de ingresar a la sala.`,
+          title: 'Atención!',
+          body:  `Un usuario acaba de ingresar a la sala.`,
           //icon: follower.photoURL
         }
       };

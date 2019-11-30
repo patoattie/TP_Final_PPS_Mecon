@@ -57,39 +57,45 @@
 
         <div class="card">
             <div class="body">
-                <form [formGroup]="formulario" id="formulario" (submit)="login()">
-                 
+                <form *ngIf="invitado" [formGroup]="formularioInvitado" id="formulario" (submit)="login()">
+
                     <div class="font-bold col-cyan msg">
-                            <h2> Ingrese los datos para iniciar la aplicación</h2>
-                          </div>
-                 
+                        <h2> Ingrese los datos para iniciar la aplicación</h2>
+                    </div>
+
+                    <div *ngIf="invitado" class="input-group">
+                        <span class="input-group-addon">
+                            <i class="material-icons">lock</i>
+                        </span>
+                        <div class="form-line">
+                            <input formControlName="nombre" id="nombre" type="text" [(ngModel)]="usuario.nombre"
+                                class="form-control" name="nombre" placeholder="Nombre" required>
+                        </div>
+                        <label id="nombre-error" class="error"
+                            for="clave"><span>{{ getError(formulario, 'nombre')}}</span></label>
+
+                    </div>
+
                     <div class="input-group">
                         <span class="input-group-addon">
                             <i class="material-icons">person</i>
                         </span>
                         <div class="form-line">
-                            <input formControlName="correo" id="correo" type="email"  [(ngModel)]="usuario.email" 
-                                class="form-control" name="correo" placeholder="Nombre usuario (email)" required autofocus>
+                            <input formControlName="correo" id="correo" type="email" [(ngModel)]="usuario.email"
+                                class="form-control" name="correo" placeholder="Nombre usuario (email)" required
+                                autofocus>
                         </div>
-                        <label id="correo-error" class="error" for="correo"><span>{{ getError(formulario, 'correo')}}</span></label>
-             
+                        <label id="correo-error" class="error"
+                            for="correo"><span>{{ getError(formulario, 'correo')}}</span></label>
+
                     </div>
 
-                    <div class="input-group">
-                        <span class="input-group-addon">
-                            <i class="material-icons">lock</i>
-                        </span>
-                        <div class="form-line">
-                            <input formControlName="clave" id="clave" type="password"  [(ngModel)]="usuario.clave"
-                                class="form-control" name="clave" placeholder="Clave" required>
-                        </div>
-                        <label id="clave-error" class="error" for="clave"><span>{{ getError(formulario, 'clave')}}</span></label>
-         
-                    </div>
+
+
                     <div class="row">
 
                         <div class="col-xs-4">
-                            <button class="btn btn-block bg-pink waves-effect" [disabled]="!formulario.valid"
+                            <button class="btn btn-block bg-pink waves-effect" [disabled]="!formularioInvitado.valid"
                                 type="submit">Ingresar</button>
 
                             <ion-spinner name="lines-small" slot="end" *ngIf="getEnEspera()"></ion-spinner>
@@ -106,10 +112,67 @@
                     </div>
                 </form>
 
-                <button class="btn btn-block bg-green waves-effect"  (click)="usuario.email='mebigi@hotmail.com';usuario.clave='123456'"
-               >Ingreso Cliente Invitado</button>
-               <button class="btn btn-block bg-green waves-effect"  (click)="usuario.email='mercedesbigi@gmail.com';usuario.clave='123456'"
-               >Metre</button>
+
+                <form *ngIf="!invitado" [formGroup]="formulario" id="formulario" (submit)="login()">
+
+                    <div class="font-bold col-cyan msg">
+                        <h2> Ingrese los datos para iniciar la aplicación</h2>
+                    </div>
+
+                    <div class="input-group">
+                        <span class="input-group-addon">
+                            <i class="material-icons">person</i>
+                        </span>
+                        <div class="form-line">
+                            <input formControlName="correo" id="correo" type="email" [(ngModel)]="usuario.email"
+                                class="form-control" name="correo" placeholder="Nombre usuario (email)" required
+                                autofocus>
+                        </div>
+                        <label id="correo-error" class="error"
+                            for="correo"><span>{{ getError(formulario, 'correo')}}</span></label>
+
+                    </div>
+
+                    <div  class="input-group">
+                        <span class="input-group-addon">
+                            <i class="material-icons">lock</i>
+                        </span>
+                        <div class="form-line">
+                            <input formControlName="clave" id="clave" type="password" [(ngModel)]="usuario.clave"
+                                class="form-control" name="clave" placeholder="Clave" required>
+                        </div>
+                        <label id="clave-error" class="error"
+                            for="clave"><span>{{ getError(formulario, 'clave')}}</span></label>
+
+                    </div>
+
+
+
+                    <div class="row">
+
+                        <div class="col-xs-4">
+                            <button class="btn btn-block bg-pink waves-effect" [disabled]="!formulario.valid"
+                                type="submit">Ingresar</button>
+
+                            <ion-spinner name="lines-small" slot="end" *ngIf="getEnEspera()"></ion-spinner>
+
+                        </div>
+                    </div>
+                    <p *ngIf="getErrorDatos()" style="color: #ea6153;">Por favor verificá que hayas ingresado un E-Mail
+                        válido y una Clave.
+                    </p>
+                    <div class="row m-t-15 m-b--20">
+                        <div class="col-xs-6 align-right">
+                            <a  (click)="mensajeRegistro()">¿todavía no estás registrado?</a>
+                        </div>
+                    </div>
+                </form>
+
+                <button class="btn btn-block bg-green waves-effect" (click)="invitadotrue()">Ingreso Cliente
+                    Invitado</button>
+                <button class="btn btn-block bg-green waves-effect"
+                    (click)="invitado=false;usuario.email='mercedesbigi@gmail.com';usuario.clave='123456'">Metre</button>
+                <button class="btn btn-block bg-blue waves-effect" (click)="fblogin()">Ingresar con Facebook</button>
             </div>
         </div>
     </div>

@@ -17,11 +17,11 @@ import * as firebase from 'firebase';
 export class AuthService {
 
   public estaloguiado: any = false;
-  public usuarioLoguiado: Usuario
+  public usuarioLoguiado: Usuario = new Usuario();
   usuarios: any[];
   spinner: boolean;
 
-  constructor(private angularFireAuth: AngularFireAuth, private db: AngularFirestore, private route: Router, private usuarioServicio: UsuarioService) {
+  constructor(private router: Router, private angularFireAuth: AngularFireAuth, private db: AngularFirestore, private route: Router, private usuarioServicio: UsuarioService) {
     angularFireAuth.authState.subscribe(Usuarioauth => (this.estaloguiado = Usuarioauth));
 
     this.usuarioServicio.traerTodasUsuarios()
@@ -34,7 +34,7 @@ export class AuthService {
 
   Ingresar(usuario: Usuario) {
     this.spinner = true;
-    this.usuarioLoguiado = new Usuario();
+   // this.usuarioLoguiado = new Usuario();
     this.login(usuario).then(() => {
       setTimeout(() => {
         this.usuarioServicio.buscarUsuarioPorEmail(usuario.email).subscribe(usuarios => {
@@ -67,15 +67,19 @@ export class AuthService {
     return this.angularFireAuth.auth.signInWithEmailAndPassword( 
       usuario.email, usuario.clave) .then((result) => {
         if (result.user.emailVerified !== true) {
+         
           this.SendVerificationMail();
+
           swal("Error", "Email no verificado, ingrese a su cuenta de email para verificar la cuenta", "error");
+         
         } else {
           swal("Verificación exitosa!", "Click para continuar", "success");
-          
         }
         
       }).catch((error) => {
-        window.alert(error.message)
+       
+        swal("Error", "La clave es inválida", "error");
+      
       })
   }
 
@@ -115,7 +119,8 @@ export class AuthService {
   SendVerificationMail() {
     return this.angularFireAuth.auth.currentUser.sendEmailVerification()
     .then(() => {
-      this.route.navigate(['login']);
+      console.log("no verifica mail");
+      this.route.navigate(['/home']);
     })
   }
 
